@@ -1,12 +1,14 @@
 import { ReactNode } from "react";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
-type ModalProps = {
+type PopUpProps = {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
 };
 
-export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
+  useScrollLock(isOpen);
   return (
     <div className="z-30">
       {/* オーバーレイ */}
@@ -17,7 +19,7 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
         onClick={onClose}
       />
       <div
-        className={`fixed left-1/2 top-1/2 flex h-[85%] max-h-[90%] min-h-[85%] w-[80%] max-w-5xl -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
+        className={`fixed left-1/2 top-1/2 flex h-[80%] max-h-[90%] min-h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
           isOpen
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"
@@ -39,7 +41,7 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
             </div>
 
             {/* コンテンツエリア */}
-            <div className="flex min-h-0 flex-1 flex-col px-6 pb-6">
+            <div className="flex min-h-0 flex-1 flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 px-6 pb-6">
               {children}
             </div>
           </div>

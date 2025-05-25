@@ -1,29 +1,24 @@
-import { Modal } from "./modal";
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
 type ProjectModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
   project: {
     title: string;
     description: string;
     images: string[];
     technologies: string[];
     role?: string;
+    period: string;
   };
 };
 
-export const ProjectModal = ({
-  isOpen,
-  onClose,
-  project,
-}: ProjectModalProps) => {
+export const ProjectModal = ({ project }: ProjectModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handlePreviousImage = () => {
+    if (isAnimating) return;
     setDirection(-1);
     setCurrentImageIndex((prev) =>
       prev === 0 ? project.images.length - 1 : prev - 1
@@ -31,6 +26,7 @@ export const ProjectModal = ({
   };
 
   const handleNextImage = () => {
+    if (isAnimating) return;
     setDirection(1);
     setCurrentImageIndex((prev) =>
       prev === project.images.length - 1 ? 0 : prev + 1
@@ -53,127 +49,136 @@ export const ProjectModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="flex h-full flex-col gap-6">
-        {/* プロジェクト画像ギャラリー */}
-        <div className="relative h-96 w-full overflow-hidden rounded-lg">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={currentImageIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              className="absolute inset-0"
-              style={{ width: "100%", height: "100%" }}
+    <div className="flex h-full flex-col gap-6">
+      <div className="relative h-96 w-full overflow-hidden rounded-lg">
+        <AnimatePresence
+          initial={false}
+          custom={direction}
+          onExitComplete={() => setIsAnimating(false)}
+        >
+          <motion.div
+            key={currentImageIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            onAnimationStart={() => setIsAnimating(true)}
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            className="absolute inset-0"
+            style={{ width: "100%", height: "100%" }}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={project.images[currentImageIndex]}
+                alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
+                priority
+              />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {project.images.length > 1 && (
+          <>
+            <button
+              onClick={handlePreviousImage}
+              disabled={isAnimating}
+              className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 p-2 text-white transition-colors ${
+                isAnimating ? "opacity-50" : "hover:bg-black/70"
+              }`}
+              aria-label="Previous image"
             >
-              <div className="relative w-full h-full">
-                <Image
-                  src={project.images[currentImageIndex]}
-                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
-                  priority
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
                 />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* ナビゲーションボタン */}
-          {project.images.length > 1 && (
-            <>
-              <button
-                onClick={handlePreviousImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70 transition-colors"
-                aria-label="Previous image"
+              </svg>
+            </button>
+            <button
+              onClick={handleNextImage}
+              disabled={isAnimating}
+              className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 p-2 text-white transition-colors ${
+                isAnimating ? "opacity-50" : "hover:bg-black/70"
+              }`}
+              aria-label="Next image"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={handleNextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70 transition-colors"
-                aria-label="Next image"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
 
-              {/* 画像インディケーター */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-                {project.images.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setDirection(index > currentImageIndex ? 1 : -1);
-                      setCurrentImageIndex(index);
-                    }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentImageIndex
-                        ? "bg-white"
-                        : "bg-white/50 hover:bg-white/75"
-                    }`}
-                    aria-label={`Go to image ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* プロジェクトタイトル */}
-        <h2 className="text-2xl font-bold text-gray-800">{project.title}</h2>
-
-        {/* プロジェクト説明 */}
-        <div>
-          <h3 className="mb-2 text-lg font-semibold text-gray-700">
-            Description
-          </h3>
-          <p className="text-gray-600">{project.description}</p>
-        </div>
-
-        {/* 役割 */}
-        {project.role && (
-          <div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-700">Role</h3>
-            <p className="text-gray-600">{project.role}</p>
-          </div>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+              {project.images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (isAnimating) return;
+                    setDirection(index > currentImageIndex ? 1 : -1);
+                    setCurrentImageIndex(index);
+                  }}
+                  disabled={isAnimating}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    index === currentImageIndex
+                      ? "bg-black"
+                      : isAnimating
+                      ? "bg-black/10"
+                      : "bg-black/20 hover:bg-black/40"
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
         )}
+      </div>
 
-        {/* 技術スタック */}
+      <h2 className="text-2xl font-bold text-gray-800 text-center">
+        {project.title}
+      </h2>
+
+      <div>
+        <h3 className="mb-2 text-lg font-semibold text-gray-700">概要</h3>
+        <p className="text-gray-600">{project.description}</p>
+      </div>
+
+      {/* 役割 */}
+      {project.role && (
+        <div>
+          <h3 className="mb-2 text-lg font-semibold text-gray-700">役割</h3>
+          <p className="text-gray-600">{project.role}</p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h3 className="mb-2 text-lg font-semibold text-gray-700">
-            Tech Stack
+            技術スタック
           </h3>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, index) => (
@@ -186,7 +191,12 @@ export const ProjectModal = ({
             ))}
           </div>
         </div>
+
+        <div>
+          <h3 className="mb-2 text-lg font-semibold text-gray-700">期間</h3>
+          <p className="text-gray-600">{project.period}</p>
+        </div>
       </div>
-    </Modal>
+    </div>
   );
 };

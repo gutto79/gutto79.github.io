@@ -1,13 +1,30 @@
 import { useState } from "react";
-import { ProjectModal } from "../components/ProjectModal";
+import { ProjectModal } from "@/components/ProjectModal";
+import { PopUp } from "@/components/PopUp";
+import { useModal } from "@/hooks/useModal";
 import Image from "next/image";
 
 const Works = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
+  const { isOpen, openModal, closeModal } = useModal();
   const projects = [
     {
       id: 1,
+      title: "発注業務支援アプリ",
+      description:
+        "株式会社STAR UPでの長期インターンプロジェクト。ECサイトの売上データとセール情報を用いた需要予測に基づき、最適な発注タイミング・数量を提案するWebアプリケーション。フロントエンドエンジニアとしてUI実装を担当。",
+      role: "フロントエンドエンジニア",
+      technologies: ["Next.js", "TypeScript"],
+      images: [
+        "/images/works/intern_works/new-item-modal.webp",
+        "/images/works/intern_works/order-application.webp",
+        "/images/works/intern_works/store-orders.webp",
+      ],
+      githubUrl: null,
+      period: "2025年2月 - 現在",
+    },
+    {
+      id: 2,
       title: "集団相性診断Webアプリ",
       description:
         "グループメンバーのプロフィールや性格診断データを基に、集団としての相性度を数値化・可視化し、結果に応じたアドバイスを提示するWebアプリ。3人チームでの開発でプロジェクトリーダーを担当。",
@@ -20,26 +37,32 @@ const Works = () => {
         "/images/works/compatibility_app/compatibility.webp",
       ],
       githubUrl: "https://github.com/shota-i-03/team_a",
+      period: "2025年3月末の1週間",
     },
-    {
-      id: 2,
-      title: "需要予測システム",
-      description:
-        "株式会社STAR UPでの長期インターンプロジェクト。ECサイトの売上データとセール情報を用いた需要予測に基づき、最適な発注タイミング・数量を提案するWebアプリケーション。フロントエンドエンジニアとしてUI設計・開発を担当。",
-      role: "フロントエンドエンジニア",
-      technologies: ["Next.js", "TypeScript"],
-      images: ["/api/placeholder/400/250"],
-      githubUrl: "#",
-    },
+
     {
       id: 3,
       title: "授業関連SNS投稿生成システム",
       description:
         "卒業研究プロジェクト。教育ロボットが授業内容を音声認識し、GPT-4oを活用して学習効果を高めるSNS投稿を自動生成するシステム。Pythonを用いてシステム開発を行った。",
-      role: "研究開発者",
+      role: undefined,
       technologies: ["Python", "プロンプトエンジニアリング"],
-      images: ["/api/placeholder/400/250"],
-      githubUrl: "#",
+      images: [
+        "/images/works/research/slide1.webp",
+        "/images/works/research/slide2.webp",
+        "/images/works/research/slide3.webp",
+        "/images/works/research/slide4.webp",
+        "/images/works/research/slide5.webp",
+        "/images/works/research/slide6.webp",
+        "/images/works/research/slide7.webp",
+        "/images/works/research/slide8.webp",
+        "/images/works/research/slide9.webp",
+        "/images/works/research/slide10.webp",
+        "/images/works/research/slide11.webp",
+        "/images/works/research/slide12.webp",
+      ],
+      githubUrl: null,
+      period: "2024年4月 - 現在",
     },
     {
       id: 4,
@@ -48,17 +71,15 @@ const Works = () => {
         "RIZAPグループでの3日間インターン。Ruby on Railsを用いたAPI設計・開発をチームで実施。実際のプロジェクトに近い要件でAPI設計書の作成とRailsでのAPI実装を行った。",
       role: "バックエンドエンジニア",
       technologies: ["Ruby on Rails"],
-      images: ["/api/placeholder/400/250"],
-      githubUrl: "#",
+      images: ["/images/works/rizap/rizap.webp"],
+      githubUrl: null,
+      period: "2025年5月上旬の3日間",
     },
   ];
 
   const handleProjectClick = (projectId: number) => {
     setSelectedProject(projectId);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
+    openModal();
   };
 
   return (
@@ -80,13 +101,19 @@ const Works = () => {
               >
                 {/* プロジェクト画像 */}
                 <div className="relative h-48 bg-gray-200">
-                  <Image
-                    src={project.images[0]}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
+                  {project.images.length > 0 ? (
+                    <Image
+                      src={project.images[0]}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                      <span className="text-gray-400 text-sm">No Image</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-6">
@@ -122,14 +149,16 @@ const Works = () => {
                     >
                       詳細
                     </button>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 text-center px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors text-sm"
-                    >
-                      GitHub
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors text-sm"
+                      >
+                        GitHub
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -139,13 +168,15 @@ const Works = () => {
       </div>
 
       {/* プロジェクトモーダル */}
-      {selectedProject && (
-        <ProjectModal
-          isOpen={true}
-          onClose={handleCloseModal}
-          project={projects.find((p) => p.id === selectedProject)!}
-        />
-      )}
+      <PopUp isOpen={isOpen} onClose={closeModal}>
+        {selectedProject && (
+          <ProjectModal
+            project={
+              projects.find((p) => p.id === selectedProject) ?? projects[0]
+            }
+          />
+        )}
+      </PopUp>
     </section>
   );
 };
