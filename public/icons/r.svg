@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Rのロゴの円形部分 -->
+        <circle fill="#276DC3" cx="12" cy="12" r="10"/>
+        <!-- Rの文字 -->
+        <path d="M8,7 L13,7 C14.1045695,7 15,7.8954305 15,9 C15,9.82842712 14.5522847,10.5784271 13.8944272,11 L16,16 L14,16 L12,11 L10,11 L10,16 L8,16 L8,7 Z M10,9 L10,10 L13,10 C13.5522847,10 14,9.55228475 14,9 C14,8.44771525 13.5522847,8 13,8 L10,8 L10,9 Z" fill="#FFFFFF"/>
+    </g>
+</svg> 
