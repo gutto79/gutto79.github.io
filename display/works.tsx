@@ -43,7 +43,7 @@ const Works = () => {
       role: undefined,
       technologies: ["Next.js", "TypeScript"],
       images: ["/images/works/portfolio/portfolio_hero.webp"],
-      githubUrl: null,
+      githubUrl: "https://github.com/gutto79/gutto79.github.io",
       period: "2024年5月26日-27日",
       tags: ["personal"],
     },

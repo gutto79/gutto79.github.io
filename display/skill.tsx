@@ -53,7 +53,7 @@ const Skills = () => {
         },
         {
           name: "Java",
-          level: 1,
+          level: 2,
           icon: (
             <Image
               src="/icons/java.svg"
@@ -108,6 +108,36 @@ const Skills = () => {
             <Image
               src="/icons/rails.svg"
               alt="Ruby on Rails"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+          ),
+          description: "",
+          details: [],
+        },
+        {
+          name: "React",
+          level: 3,
+          icon: (
+            <Image
+              src="/icons/react.svg"
+              alt="React"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+          ),
+          description: "",
+          details: [],
+        },
+        {
+          name: "Vite",
+          level: 3,
+          icon: (
+            <Image
+              src="/icons/vite.svg"
+              alt="Vite"
               width={40}
               height={40}
               className="w-10 h-10"
@@ -261,8 +291,6 @@ const Skills = () => {
                 ⭐️⭐️⭐️⭐️ (実務レベル)
                 <br />
                 長期インターンや研究で継続的に使用している技術。
-                <br />
-                要件を実装するためのコードをスムーズに書ける。
               </p>
               <p>
                 ⭐️⭐️⭐️ (開発可能レベル)

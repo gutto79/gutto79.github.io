@@ -176,7 +176,7 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         )}
       </div>
 
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-gray-800 text-center border-b border-gray-200 pb-2">
         {project.title}
       </h2>
 
