@@ -28,3 +28,18 @@ export const tagLabels: Record<ProjectTag, string> = {
   "short-term-internship": "短期インターン",
   personal: "個人開発",
 } as const;
+
+export type UseProjectModalProps = {
+  project: Project;
+  isOpen?: boolean;
+};
+
+export type UseProjectModalReturn = {
+  currentImageIndex: number;
+  direction: number;
+  isAnimating: boolean;
+  handlePreviousImage: () => void;
+  handleNextImage: () => void;
+  handleImageSelect: (index: number) => void;
+  handleAnimationComplete: () => void;
+};

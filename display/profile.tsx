@@ -36,7 +36,8 @@ const Profile = () => {
 
                   <div className="w-full space-y-3 text-center">
                     <h3 className="text-3xl font-bold text-gray-800">
-                      木村原暉(KIMURA GENKI)
+                      <span className="block md:inline">木村原暉</span>
+                      <span className="block md:inline">(KIMURA GENKI)</span>
                       <br />
                       <div className="mt-3 w-full h-0.5 bg-gray-200"></div>
                       <span className="text-lg font-semibold">
@@ -50,7 +51,11 @@ const Profile = () => {
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-800 underline decoration-1 hover:decoration-2 transition-all"
                         >
-                          ヒューマンロボットインタラクション研究室
+                          <span className="md:hidden">HRI</span>
+                          <span className="hidden md:inline">
+                            ヒューマンロボットインタラクション
+                          </span>
+                          研究室
                         </Link>
                         <br />
                         <Link
@@ -84,20 +89,20 @@ const Profile = () => {
                   Career
                 </h4>
                 <div className="relative">
-                  {/* Timeline line */}
-                  <div className="absolute left-36 top-0 h-full w-0.5 bg-gradient-to-b from-indigo-300 to-blue-200"></div>
+                  {/* Timeline line - hidden on mobile */}
+                  <div className="absolute left-36 top-0 h-full w-0.5 bg-gradient-to-b from-indigo-300 to-blue-200 hidden md:block"></div>
 
                   {/* Timeline items */}
                   <div className="space-y-8">
                     {/* 学部 */}
-                    <div className="relative flex items-start group">
-                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                    <div className="relative flex flex-col md:flex-row md:items-start group">
+                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
                         <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
                           2021年4月
                         </div>
                       </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
-                      <div className="flex-1 ml-8">
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
+                      <div className="flex-1 md:ml-8">
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
                           <h5 className="font-semibold text-gray-800 text-lg">
                             京都大学 工学部 情報学科 入学
@@ -107,31 +112,35 @@ const Profile = () => {
                     </div>
 
                     {/* 研究室配属 */}
-                    <div className="relative flex items-start group">
-                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                    <div className="relative flex flex-col md:flex-row md:items-start group">
+                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
                         <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
                           2024年4月
                         </div>
                       </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
-                      <div className="flex-1 ml-8">
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
+                      <div className="flex-1 md:ml-8">
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
                           <h5 className="font-semibold text-gray-800 text-lg">
-                            ヒューマンロボットインタラクション研究室 配属
+                            <span className="md:hidden">HRI</span>
+                            <span className="hidden md:inline">
+                              ヒューマンロボットインタラクション
+                            </span>
+                            研究室 配属
                           </h5>
                         </div>
                       </div>
                     </div>
 
                     {/* STAR UP */}
-                    <div className="relative flex items-start group">
-                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                    <div className="relative flex flex-col md:flex-row md:items-start group">
+                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
                         <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
                           2025年2月
                         </div>
                       </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
-                      <div className="flex-1 ml-8">
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
+                      <div className="flex-1 md:ml-8">
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
                           <h5 className="font-semibold text-gray-800 text-lg">
                             株式会社STAR UP 入社
@@ -141,14 +150,14 @@ const Profile = () => {
                     </div>
 
                     {/* 大学院 */}
-                    <div className="relative flex items-start group">
-                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                    <div className="relative flex flex-col md:flex-row md:items-start group">
+                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
                         <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
                           2025年4月
                         </div>
                       </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
-                      <div className="flex-1 ml-8">
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
+                      <div className="flex-1 md:ml-8">
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
                           <h5 className="font-semibold text-gray-800 text-lg">
                             京都大学大学院 情報学研究科 社会情報学専攻 入学

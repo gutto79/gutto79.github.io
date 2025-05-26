@@ -1,81 +1,33 @@
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { useScrollLock } from "@/hooks/useScrollLock";
+import { useProjectModal } from "@/hooks/useProjectModal";
+import { slideVariants, slideTransition } from "@/utils/projectModal";
+import type { Project } from "@/types/project";
 
 type ProjectModalProps = {
-  project: {
-    title: string;
-    description: string;
-    features?: string[];
-    role?: string[];
-    considerations?: string[];
-    challenges?: string[];
-    learnings?: string[];
-    technologies: string[];
-    images: string[];
-    period: string;
-  };
+  project: Project;
   isOpen?: boolean;
 };
 
 export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useScrollLock(isOpen);
-
-  // Reset state when project changes or modal is closed
-  useEffect(() => {
-    if (!isOpen) {
-      setCurrentImageIndex(0);
-      setDirection(0);
-      setIsAnimating(false);
-    }
-  }, [project, isOpen]);
-
-  const handlePreviousImage = () => {
-    if (isAnimating) return;
-    setDirection(-1);
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? project.images.length - 1 : prev - 1
-    );
-  };
-
-  const handleNextImage = () => {
-    if (isAnimating) return;
-    setDirection(1);
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) =>
-      prev === project.images.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? "100%" : "-100%",
-      opacity: 0,
-    }),
-  };
+  const {
+    currentImageIndex,
+    direction,
+    isAnimating,
+    handlePreviousImage,
+    handleNextImage,
+    handleImageSelect,
+    handleAnimationComplete,
+  } = useProjectModal({ project, isOpen });
 
   return (
     <div className="flex h-full flex-col gap-8">
       {/* 画像スライダー */}
-      <div className="relative h-[400px] w-full overflow-hidden rounded-xl bg-gray-50 shadow-lg">
+      <div className="relative h-[250px] sm:h-[300px] md:h-[400px] w-full overflow-hidden rounded-xl bg-gray-50 shadow-lg">
         <AnimatePresence
           initial={false}
           custom={direction}
-          onExitComplete={() => setIsAnimating(false)}
+          onExitComplete={handleAnimationComplete}
         >
           {project.images[currentImageIndex] && (
             <motion.div
@@ -85,10 +37,7 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
+              transition={slideTransition}
               className="absolute inset-0"
               style={{ width: "100%", height: "100%" }}
             >
@@ -145,12 +94,7 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
               {project.images.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    if (isAnimating) return;
-                    setDirection(index > currentImageIndex ? 1 : -1);
-                    setIsAnimating(true);
-                    setCurrentImageIndex(index);
-                  }}
+                  onClick={() => handleImageSelect(index)}
                   disabled={isAnimating}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
                     index === currentImageIndex
@@ -168,17 +112,19 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       </div>
 
       {/* タイトルと説明 */}
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold text-gray-800 text-center pb-4 border-b-2 border-gray-100">
+      <div className="space-y-3 sm:space-y-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center pb-3 sm:pb-4 border-b-2 border-gray-100">
           {project.title}
         </h2>
-        <p className="text-gray-600 leading-relaxed">{project.description}</p>
+        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+          {project.description}
+        </p>
       </div>
 
       {/* 機能 */}
       {project.features && (
-        <div className="bg-blue-50/50 rounded-xl p-6 shadow-sm">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
+        <div className="bg-blue-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Image
               src="/icons/sparkles.svg"
               alt="Features"
@@ -191,14 +137,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
             />
             主な機能
           </h3>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {project.features.map((feature, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 bg-white/50 rounded-lg p-3 shadow-sm"
+                className="flex items-start gap-2 sm:gap-3 bg-white/50 rounded-lg p-2 sm:p-3 shadow-sm"
               >
-                <span className="w-2 h-2 mt-2 bg-blue-500 rounded-full flex-shrink-0"></span>
-                <span className="text-gray-700">{feature}</span>
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                <span className="text-sm sm:text-base text-gray-700">
+                  {feature}
+                </span>
               </div>
             ))}
           </div>
@@ -207,8 +155,8 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
 
       {/* 役割 */}
       {project.role && (
-        <div className="bg-gray-50/50 rounded-xl p-6 shadow-sm">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
+        <div className="bg-gray-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Image
               src="/icons/users.svg"
               alt="Role"
@@ -221,14 +169,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
             />
             担当
           </h3>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {project.role.map((role, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 bg-white/50 rounded-lg p-3 shadow-sm"
+                className="flex items-start gap-2 sm:gap-3 bg-white/50 rounded-lg p-2 sm:p-3 shadow-sm"
               >
-                <span className="w-2 h-2 mt-2 bg-gray-600 rounded-full flex-shrink-0"></span>
-                <span className="text-gray-700">{role}</span>
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-2 bg-gray-600 rounded-full flex-shrink-0"></span>
+                <span className="text-sm sm:text-base text-gray-700">
+                  {role}
+                </span>
               </div>
             ))}
           </div>
@@ -237,8 +187,8 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
 
       {/* 工夫・意識した点 */}
       {project.considerations && (
-        <div className="bg-green-50/50 rounded-xl p-6 shadow-sm">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
+        <div className="bg-green-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Image
               src="/icons/sparkles.svg"
               alt="Considerations"
@@ -251,14 +201,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
             />
             工夫点・意識した点
           </h3>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {project.considerations.map((consideration, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 bg-white/50 rounded-lg p-3 shadow-sm"
+                className="flex items-start gap-2 sm:gap-3 bg-white/50 rounded-lg p-2 sm:p-3 shadow-sm"
               >
-                <span className="w-2 h-2 mt-2 bg-green-500 rounded-full flex-shrink-0"></span>
-                <span className="text-gray-700">{consideration}</span>
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span className="text-sm sm:text-base text-gray-700">
+                  {consideration}
+                </span>
               </div>
             ))}
           </div>
@@ -266,9 +218,9 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       )}
 
       {/* 技術スタックと期間 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-blue-50/50 rounded-xl p-6 shadow-sm">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="bg-blue-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Image
               src="/icons/code.svg"
               alt="Technologies"
@@ -281,11 +233,11 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
             />
             技術スタック
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {project.technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-4 py-2 text-sm bg-white/80 text-blue-700 rounded-lg border-2 border-blue-300 shadow-sm hover:shadow-md transition-shadow"
+                className="px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm bg-white/80 text-blue-700 rounded-lg border border-blue-300 shadow-sm hover:shadow-md transition-shadow"
               >
                 {tech}
               </span>
@@ -293,8 +245,8 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
           </div>
         </div>
 
-        <div className="bg-gray-50/50 rounded-xl p-6 shadow-sm">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
+        <div className="bg-gray-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Image
               src="/icons/calendar.svg"
               alt="Period"
@@ -307,7 +259,7 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
             />
             期間
           </h3>
-          <p className="text-gray-700 bg-white/80 rounded-lg p-3 shadow-sm">
+          <p className="text-sm sm:text-base text-gray-700 bg-white/80 rounded-lg p-2 sm:p-3 shadow-sm">
             {project.period}
           </p>
         </div>
