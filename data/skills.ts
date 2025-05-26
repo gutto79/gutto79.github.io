@@ -85,14 +85,14 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       {
         name: "PostgreSQL",
-        level: 3,
+        level: 2,
         iconPath: "/icons/database.svg",
         description: "",
         details: [],
       },
       {
         name: "Supabase",
-        level: 3,
+        level: 2,
         iconPath: "/icons/supabase.svg",
         description: "",
         details: [],
