@@ -8,7 +8,7 @@ const Skills = () => {
       skills: [
         {
           name: "TypeScript",
-          level: 4,
+          level: 3,
           icon: (
             <Image
               src="/icons/typescript.svg"
@@ -23,7 +23,7 @@ const Skills = () => {
         },
         {
           name: "Python",
-          level: 4,
+          level: 3,
           icon: (
             <Image
               src="/icons/python.svg"
@@ -38,7 +38,7 @@ const Skills = () => {
         },
         {
           name: "Ruby",
-          level: 3,
+          level: 2,
           icon: (
             <Image
               src="/icons/ruby.svg"
@@ -53,7 +53,7 @@ const Skills = () => {
         },
         {
           name: "Java",
-          level: 2,
+          level: 1,
           icon: (
             <Image
               src="/icons/java.svg"
@@ -88,7 +88,7 @@ const Skills = () => {
       skills: [
         {
           name: "Next.js",
-          level: 4,
+          level: 3,
           icon: (
             <Image
               src="/icons/nextjs.svg"
@@ -103,7 +103,7 @@ const Skills = () => {
         },
         {
           name: "Ruby on Rails",
-          level: 3,
+          level: 2,
           icon: (
             <Image
               src="/icons/rails.svg"
@@ -118,7 +118,7 @@ const Skills = () => {
         },
         {
           name: "React",
-          level: 3,
+          level: 2,
           icon: (
             <Image
               src="/icons/react.svg"
@@ -133,7 +133,7 @@ const Skills = () => {
         },
         {
           name: "Vite",
-          level: 3,
+          level: 2,
           icon: (
             <Image
               src="/icons/vite.svg"
@@ -152,7 +152,7 @@ const Skills = () => {
       name: "DB & Cloud Service",
       skills: [
         {
-          name: "RDB",
+          name: "PostgreSQL",
           level: 3,
           icon: (
             <Image
@@ -188,7 +188,7 @@ const Skills = () => {
       skills: [
         {
           name: "Git / GitHub",
-          level: 4,
+          level: 3,
           icon: (
             <Image
               src="/icons/git.svg"
@@ -258,7 +258,7 @@ const Skills = () => {
         />
       );
     }
-    const emptyStars = 5 - stars.length;
+    const emptyStars = 4 - stars.length;
     for (let i = 0; i < emptyStars; i++) {
       stars.push(<Star key={`empty-${i}`} className="w-5 h-5 text-gray-300" />);
     }
@@ -283,29 +283,24 @@ const Skills = () => {
             </h3>
             <div className="space-y-2 text-gray-600">
               <p>
-                ⭐️⭐️⭐️⭐️⭐️ (プロフェッショナルレベル)
+                ⭐️⭐️⭐️⭐️ (リードレベル)
                 <br />
-                ライブラリを構築できるレベル。複雑な問題解決や指導が可能
+                複雑な問題解決やシステム設計を主導し、メンバーの指導もできる。
               </p>
               <p>
-                ⭐️⭐️⭐️⭐️ (実務レベル)
+                ⭐️⭐️⭐️ (実務レベル)
                 <br />
-                長期インターンや研究で継続的に使用している技術。
+                チームの一員として、自律的に担当業務の開発を進めることができる。
               </p>
               <p>
-                ⭐️⭐️⭐️ (開発可能レベル)
+                ⭐️⭐️ (基礎開発レベル)
                 <br />
-                継続的に使用してはいないが、開発に使用したことがある技術。
-              </p>
-              <p>
-                ⭐️⭐️ (基礎理解レベル)
-                <br />
-                学部や院の授業以外でも触れたことがあるが開発に使用したことのない技術。
+                自力で調べながら、小規模で単純なアプリケーションや機能を作成できる。
               </p>
               <p>
                 ⭐️ (入門レベル)
                 <br />
-                学部や院の授業で触れた技術。
+                学部や院の授業で触れ、基本的な操作ができる。
               </p>
             </div>
           </div>
