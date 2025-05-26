@@ -28,7 +28,6 @@ const Skills = () => {
             </div>
           </div>
 
-          {/* スキルレベルの説明 */}
           <div className="mb-8 sm:mb-12 p-4 sm:p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-blue-100/50">
             <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-6 text-center relative">
               スキルレベルの説明
@@ -111,7 +110,6 @@ const Skills = () => {
             </div>
           </div>
 
-          {/* カテゴリーごとのスキル表示 */}
           <div className="space-y-8 sm:space-y-12">
             {skillCategories.map((category, categoryIndex) => (
               <div key={categoryIndex}>
@@ -145,12 +143,10 @@ const Skills = () => {
                           </div>
                         </div>
 
-                        {/* スキル名 */}
                         <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2 sm:mb-3 leading-tight">
                           {skill.name}
                         </h4>
 
-                        {/* スキルレベル */}
                         <div className="mb-2">
                           {renderStars(skill.level, skill.name)}
                         </div>

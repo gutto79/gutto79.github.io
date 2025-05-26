@@ -11,28 +11,16 @@ import Contact from "./contact";
 const HomeContainer = () => {
   return (
     <div className="min-h-screen">
-      {/* ヘッダー */}
       <Header />
 
-      {/* メインコンテンツ */}
       <main className="pt-16">
-        {/* ヒーローセクション */}
         <Hero />
-
-        {/* プロフィールセクション */}
         <Profile />
-
-        {/* スキルセクション */}
         <Skills />
-
-        {/* 作品セクション */}
         <Works />
-
-        {/* コンタクトセクション */}
         <Contact />
       </main>
 
-      {/* フッター */}
       <Footer />
     </div>
   );

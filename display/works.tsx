@@ -1,4 +1,4 @@
-import { ProjectModal } from "@/components/ProjectModal";
+import { ProjectModal } from "@/display/ProjectModal";
 import { PopUp } from "@/components/PopUp";
 import Image from "next/image";
 import BackgroundDecorations from "@/components/BackgroundDecorations";
@@ -30,14 +30,12 @@ const Works = () => {
             </div>
           </div>
 
-          {/* プロジェクト一覧 */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div
                 key={project.id}
                 className="bg-white rounded-lg border-2 border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                {/* プロジェクト画像 */}
                 <div className="relative h-48 bg-gray-200 border-b-2 border-gray-200">
                   {project.images.length > 0 ? (
                     <Image
@@ -55,12 +53,10 @@ const Works = () => {
                 </div>
 
                 <div className="p-6">
-                  {/* プロジェクトタイトル */}
                   <h3 className="text-xl font-bold text-gray-800 mb-6 pb-3 border-b-2 border-gray-200 whitespace-nowrap overflow-hidden text-ellipsis">
                     {project.title}
                   </h3>
 
-                  {/* タグ */}
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
@@ -74,7 +70,6 @@ const Works = () => {
                     </div>
                   </div>
 
-                  {/* 使用技術 */}
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.slice(0, 3).map((tech, index) => (
@@ -93,7 +88,6 @@ const Works = () => {
                     </div>
                   </div>
 
-                  {/* リンク */}
                   <div className="flex gap-3">
                     <button
                       onClick={() => handleProjectClick(project.id)}
@@ -141,7 +135,6 @@ const Works = () => {
         </div>
       </div>
 
-      {/* プロジェクトモーダル */}
       <PopUp isOpen={isOpen} onClose={handleCloseModal}>
         {selectedProject && (
           <ProjectModal

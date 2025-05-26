@@ -29,7 +29,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button
-              onClick={() => scrollToSection("PROFILE")}
+              onClick={() => scrollToSection("profile")}
               className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
             >
               <span className="flex items-center justify-center gap-2">
@@ -44,7 +44,7 @@ const Hero = () => {
               </span>
             </button>
             <button
-              onClick={() => scrollToSection("WORKS")}
+              onClick={() => scrollToSection("works")}
               className="group px-8 py-4 border-2 border-blue-400 text-blue-400 rounded-xl font-semibold hover:bg-blue-400 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-400/25"
             >
               <span className="flex items-center justify-center gap-2">
