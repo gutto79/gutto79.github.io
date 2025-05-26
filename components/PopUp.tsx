@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type PopUpProps = {
   isOpen: boolean;
@@ -7,7 +8,16 @@ type PopUpProps = {
 };
 
 export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted || !isOpen) return null;
+
+  return createPortal(
     <div className="relative z-[100]">
       {/* オーバーレイ */}
       <div
@@ -44,6 +54,7 @@ export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
