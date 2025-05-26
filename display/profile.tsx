@@ -12,9 +12,16 @@ const Profile = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4 inline-block">
-              Profile
-            </h2>
+            <div className="relative inline-block mb-4">
+              <Image
+                src="/icons/profile.svg"
+                alt="Profile icon"
+                width={48}
+                height={48}
+                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
+              />
+              <h2 className="text-4xl font-bold text-gray-800">Profile</h2>
+            </div>
             <div className="w-[120px] h-1 bg-blue-600 mx-auto"></div>
           </div>
 
@@ -85,9 +92,18 @@ const Profile = () => {
             {/* 経歴 */}
             <div className="max-w-3xl mx-auto">
               <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-8 rounded-xl shadow-sm border border-indigo-100">
-                <h4 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-                  Career
-                </h4>
+                <div className="text-center mb-8">
+                  <div className="relative inline-block">
+                    <Image
+                      src="/icons/calendar.svg"
+                      alt="Career icon"
+                      width={42}
+                      height={42}
+                      className="absolute left-[-65px] top-1/2 transform -translate-y-1/2"
+                    />
+                    <h4 className="text-3xl font-bold text-gray-800">Career</h4>
+                  </div>
+                </div>
                 <div className="relative">
                   {/* Timeline line - hidden on mobile */}
                   <div className="absolute left-36 top-0 h-full w-0.5 bg-gradient-to-b from-indigo-300 to-blue-200 hidden md:block"></div>

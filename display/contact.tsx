@@ -15,9 +15,18 @@ const Contact = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4 pb-2 border-b-4 border-blue-600 inline-block tracking-wide">
-              Connect
-            </h2>
+            <div className="relative inline-block mb-4">
+              <Image
+                src="/icons/connect.svg"
+                alt="Connect icon"
+                width={48}
+                height={48}
+                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
+              />
+              <h2 className="text-4xl font-bold text-gray-800 pb-2 border-b-4 border-blue-600 inline-block tracking-wide">
+                Connect
+              </h2>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">

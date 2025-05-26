@@ -16,9 +16,18 @@ const Works = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2 inline-block">
-              Works
-            </h2>
+            <div className="relative inline-block mb-4">
+              <Image
+                src="/icons/works.svg"
+                alt="Works icon"
+                width={48}
+                height={48}
+                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
+              />
+              <h2 className="text-4xl font-bold text-gray-800 border-b-4 border-blue-600 pb-2 inline-block">
+                Works
+              </h2>
+            </div>
           </div>
 
           {/* プロジェクト一覧 */}

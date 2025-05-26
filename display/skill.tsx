@@ -13,10 +13,19 @@ const Skills = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl border-b-4 border-blue-600 pb-2 font-bold text-gray-800 mb-4 inline-block relative">
-              Skills
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></div>
-            </h2>
+            <div className="relative inline-block mb-4">
+              <Image
+                src="/icons/skills.svg"
+                alt="Skills icon"
+                width={48}
+                height={48}
+                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
+              />
+              <h2 className="text-3xl sm:text-4xl border-b-4 border-blue-600 pb-2 font-bold text-gray-800 inline-block relative">
+                Skills
+                <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></div>
+              </h2>
+            </div>
           </div>
 
           {/* スキルレベルの説明 */}
