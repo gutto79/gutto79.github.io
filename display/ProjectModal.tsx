@@ -19,7 +19,7 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       />
 
       <div className="space-y-3 sm:space-y-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center pb-3 sm:pb-4 border-b-2 border-gray-100">
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 text-center pb-3 sm:pb-4 border-b-2 border-gray-100">
           {project.title}
         </h2>
         <p className="text-sm sm:text-base text-gray-600 leading-relaxed">

@@ -34,20 +34,18 @@ const Skills = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-gray-600">
               <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
                   <div className="flex gap-0.5 mt-1 shrink-0">
                     {[...Array(4)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400"
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
                       />
                     ))}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800 text-sm sm:text-base">
-                      (リードレベル)
-                    </p>
-                    <p className="text-xs sm:text-sm">
+                    <p className="font-medium text-gray-800">(リードレベル)</p>
+                    <p className="text-sm">
                       複雑な問題解決やシステム設計を主導し、メンバーの指導もできる。
                     </p>
                   </div>

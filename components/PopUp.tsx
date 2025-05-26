@@ -17,7 +17,7 @@ export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
         onClick={onClose}
       />
       <div
-        className={`fixed left-1/2 top-1/2 z-[100] flex h-[80%] max-h-[90vh] w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
+        className={`fixed left-1/2 top-1/2 z-[100] flex h-[90%] max-h-[95vh] w-[95%] md:h-[80%] md:w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
           isOpen
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"

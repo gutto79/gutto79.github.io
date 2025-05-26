@@ -50,7 +50,9 @@ const Profile = () => {
                       <span className="text-lg font-semibold">
                         京都大学大学院
                         <br />
-                        情報学研究科 社会情報学専攻 修士1回生
+                        情報学研究科 社会情報学専攻
+                        <span className="hidden md:inline">修士1回生</span>
+                        <span className="md:hidden">M1</span>
                         <br />
                         <Link
                           href="https://www.robot.soc.i.kyoto-u.ac.jp/"
@@ -121,7 +123,12 @@ const Profile = () => {
                       <div className="flex-1 md:ml-8">
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
                           <h5 className="font-semibold text-gray-800 text-lg">
-                            京都大学 工学部 情報学科 入学
+                            <span className="hidden md:inline">
+                              京都大学 工学部 情報学科 入学
+                            </span>
+                            <span className="md:hidden">
+                              京都大学工学部情報学科 入学
+                            </span>
                           </h5>
                         </div>
                       </div>
