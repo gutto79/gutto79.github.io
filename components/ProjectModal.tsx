@@ -111,7 +111,6 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         )}
       </div>
 
-      {/* タイトルと説明 */}
       <div className="space-y-3 sm:space-y-4">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center pb-3 sm:pb-4 border-b-2 border-gray-100">
           {project.title}
@@ -121,7 +120,6 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         </p>
       </div>
 
-      {/* 機能 */}
       {project.features && (
         <div className="bg-blue-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
           <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
@@ -153,7 +151,6 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         </div>
       )}
 
-      {/* 役割 */}
       {project.role && (
         <div className="bg-gray-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
           <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
@@ -185,7 +182,6 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         </div>
       )}
 
-      {/* 工夫・意識した点 */}
       {project.considerations && (
         <div className="bg-green-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
           <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
@@ -217,7 +213,6 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
         </div>
       )}
 
-      {/* 技術スタックと期間 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="bg-blue-50/50 rounded-xl p-4 sm:p-6 shadow-sm">
           <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">

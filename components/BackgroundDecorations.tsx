@@ -9,7 +9,6 @@ const BackgroundDecorations = ({
 }: BackgroundDecorationsProps) => {
   return (
     <div className={`absolute inset-0 ${className}`}>
-      {/* 大きな背景装飾 */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-[600px] h-[600px] bg-blue-500/8 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-[700px] h-[700px] bg-cyan-500/8 rounded-full blur-3xl"></div>
