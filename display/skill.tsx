@@ -1,52 +1,9 @@
-"use client";
-
 import Image from "next/image";
-import { Star, StarHalf } from "lucide-react";
-import { skillCategories } from "@/types/skills";
+import { Star } from "lucide-react";
 import BackgroundDecorations from "@/components/BackgroundDecorations";
-
+import { renderStars } from "@/utils/skills";
+import { skillCategories } from "@/data/skills";
 const Skills = () => {
-  const renderStars = (level: number, name?: string) => {
-    // TOEICスコアの場合は特別な表示
-    if (name === "TOEIC") {
-      return (
-        <div className="flex flex-col items-center">
-          <div className="text-lg font-bold text-cyan-600">{level}</div>
-          <div className="text-xs text-gray-500">2024年4月</div>
-        </div>
-      );
-    }
-
-    if (level > 100) return `${level}`;
-
-    const stars = [];
-    const fullStars = Math.floor(level);
-    const hasHalfStar = level % 1 >= 0.5;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(
-        <Star
-          key={`full-${i}`}
-          className="w-3 h-3 fill-yellow-400 text-yellow-400 drop-shadow-sm"
-        />
-      );
-    }
-    if (hasHalfStar) {
-      stars.push(
-        <StarHalf
-          key="half"
-          className="w-3 h-3 fill-yellow-400 text-yellow-400 drop-shadow-sm"
-        />
-      );
-    }
-    const emptyStars = 4 - stars.length;
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Star key={`empty-${i}`} className="w-3 h-3 text-gray-300" />);
-    }
-
-    return <div className="flex gap-0.5 justify-center">{stars}</div>;
-  };
-
   return (
     <section
       id="skills"
@@ -66,7 +23,6 @@ const Skills = () => {
           <div className="mb-12 p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-100/50">
             <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center relative">
               スキルレベルの説明
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
             </h3>
             <div className="grid md:grid-cols-2 gap-6 text-gray-600">
               <div className="space-y-4">

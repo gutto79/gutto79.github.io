@@ -79,79 +79,81 @@ const Profile = () => {
 
             {/* 経歴 */}
             <div className="max-w-3xl mx-auto">
-              <h4 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                career
-              </h4>
-              <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-36 top-0 h-full w-0.5 bg-blue-200"></div>
+              <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-8 rounded-xl shadow-sm border border-indigo-100">
+                <h4 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+                  Career
+                </h4>
+                <div className="relative">
+                  {/* Timeline line */}
+                  <div className="absolute left-36 top-0 h-full w-0.5 bg-gradient-to-b from-indigo-300 to-blue-200"></div>
 
-                {/* Timeline items */}
-                <div className="space-y-8">
-                  {/* 学部 */}
-                  <div className="relative flex items-start">
-                    <div className="w-36 text-right pr-8 flex-shrink-0">
-                      <div className="text-lg font-bold text-blue-600 whitespace-nowrap">
-                        2021年4月
+                  {/* Timeline items */}
+                  <div className="space-y-8">
+                    {/* 学部 */}
+                    <div className="relative flex items-start group">
+                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
+                          2021年4月
+                        </div>
+                      </div>
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
+                      <div className="flex-1 ml-8">
+                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
+                          <h5 className="font-semibold text-gray-800 text-lg">
+                            京都大学 工学部 情報学科 入学
+                          </h5>
+                        </div>
                       </div>
                     </div>
-                    <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm mt-1"></div>
-                    <div className="flex-1 ml-8">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <h5 className="font-semibold text-gray-800">
-                          京都大学 工学部 情報学科 入学
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* 研究室配属 */}
-                  <div className="relative flex items-start">
-                    <div className="w-36 text-right pr-8 flex-shrink-0">
-                      <div className="text-lg font-bold text-blue-600 whitespace-nowrap">
-                        2024年4月
+                    {/* 研究室配属 */}
+                    <div className="relative flex items-start group">
+                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
+                          2024年4月
+                        </div>
+                      </div>
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
+                      <div className="flex-1 ml-8">
+                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
+                          <h5 className="font-semibold text-gray-800 text-lg">
+                            ヒューマンロボットインタラクション研究室 配属
+                          </h5>
+                        </div>
                       </div>
                     </div>
-                    <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm mt-1"></div>
-                    <div className="flex-1 ml-8">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <h5 className="font-semibold text-gray-800">
-                          ヒューマンロボットインタラクション研究室 配属
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* STAR UP */}
-                  <div className="relative flex items-start">
-                    <div className="w-36 text-right pr-8 flex-shrink-0">
-                      <div className="text-lg font-bold text-blue-600 whitespace-nowrap">
-                        2025年2月
+                    {/* STAR UP */}
+                    <div className="relative flex items-start group">
+                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
+                          2025年2月
+                        </div>
+                      </div>
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
+                      <div className="flex-1 ml-8">
+                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
+                          <h5 className="font-semibold text-gray-800 text-lg">
+                            株式会社STAR UP 入社
+                          </h5>
+                        </div>
                       </div>
                     </div>
-                    <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm mt-1"></div>
-                    <div className="flex-1 ml-8">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <h5 className="font-semibold text-gray-800">
-                          株式会社STAR UP 入社
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* 大学院 */}
-                  <div className="relative flex items-start">
-                    <div className="w-36 text-right pr-8 flex-shrink-0">
-                      <div className="text-lg font-bold text-blue-600 whitespace-nowrap">
-                        2025年4月
+                    {/* 大学院 */}
+                    <div className="relative flex items-start group">
+                      <div className="w-36 text-right pr-8 flex-shrink-0">
+                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
+                          2025年4月
+                        </div>
                       </div>
-                    </div>
-                    <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm mt-1"></div>
-                    <div className="flex-1 ml-8">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <h5 className="font-semibold text-gray-800">
-                          京都大学大学院 情報学研究科 社会情報学専攻 入学
-                        </h5>
+                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform"></div>
+                      <div className="flex-1 ml-8">
+                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
+                          <h5 className="font-semibold text-gray-800 text-lg">
+                            京都大学大学院 情報学研究科 社会情報学専攻 入学
+                          </h5>
+                        </div>
                       </div>
                     </div>
                   </div>

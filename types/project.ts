@@ -21,17 +21,10 @@ export interface Project {
   tags: ProjectTag[];
 }
 
-export interface Skill {
-  name: string;
-  level: number;
-  iconPath: string;
-  description: string;
-  details: string[];
-}
-
-export interface SkillCategory {
-  name: string;
-  color: string;
-  bgColor: string;
-  skills: Skill[];
-}
+export const tagLabels: Record<ProjectTag, string> = {
+  research: "研究",
+  hackathon: "ハッカソン",
+  "long-term-internship": "長期インターン",
+  "short-term-internship": "短期インターン",
+  personal: "個人開発",
+} as const;
