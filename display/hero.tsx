@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-black text-white relative overflow-hidden">
@@ -42,19 +44,13 @@ const Hero = () => {
             >
               <span className="flex items-center justify-center gap-2">
                 About Me
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+                <Image
+                  src="/icons/arrow-right.svg"
+                  alt="Arrow right"
+                  width={16}
+                  height={16}
+                  className="group-hover:translate-x-1 transition-transform brightness-0 invert"
+                />
               </span>
             </button>
             <button
@@ -68,19 +64,17 @@ const Hero = () => {
             >
               <span className="flex items-center justify-center gap-2">
                 View Works
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+                <Image
+                  src="/icons/arrow-right.svg"
+                  alt="Arrow right"
+                  width={16}
+                  height={16}
+                  className="group-hover:translate-x-1 transition-transform group-hover:brightness-0 group-hover:invert"
+                  style={{
+                    filter:
+                      "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(101%)",
+                  }}
+                />
               </span>
             </button>
           </div>
@@ -93,19 +87,16 @@ const Hero = () => {
           <span className="text-xs text-gray-400 uppercase tracking-wider">
             Scroll
           </span>
-          <svg
-            className="w-6 h-6 text-blue-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+          <Image
+            src="/icons/arrow-down.svg"
+            alt="Scroll down"
+            width={24}
+            height={24}
+            style={{
+              filter:
+                "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(101%)",
+            }}
+          />
         </div>
       </div>
 

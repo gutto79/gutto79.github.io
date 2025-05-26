@@ -116,20 +116,13 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
               }`}
               aria-label="Previous image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
+              <Image
+                src="/icons/arrow-left.svg"
+                alt="Previous"
+                width={20}
+                height={20}
+                className="brightness-0"
+              />
             </button>
             <button
               onClick={handleNextImage}
@@ -139,20 +132,13 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
               }`}
               aria-label="Next image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
+              <Image
+                src="/icons/arrow-right.svg"
+                alt="Next"
+                width={20}
+                height={20}
+                className="brightness-0"
+              />
             </button>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
@@ -193,20 +179,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       {project.features && (
         <div className="bg-blue-50/50 rounded-xl p-6 shadow-sm">
           <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-blue-600"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-              />
-            </svg>
+            <Image
+              src="/icons/sparkles.svg"
+              alt="Features"
+              width={24}
+              height={24}
+              style={{
+                filter:
+                  "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(101%)",
+              }}
+            />
             主な機能
           </h3>
           <div className="flex flex-col gap-3">
@@ -227,20 +209,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       {project.role && (
         <div className="bg-gray-50/50 rounded-xl p-6 shadow-sm">
           <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-gray-600"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-              />
-            </svg>
+            <Image
+              src="/icons/users.svg"
+              alt="Role"
+              width={24}
+              height={24}
+              style={{
+                filter:
+                  "brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%)",
+              }}
+            />
             担当
           </h3>
           <div className="flex flex-col gap-3">
@@ -261,20 +239,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       {project.considerations && (
         <div className="bg-green-50/50 rounded-xl p-6 shadow-sm">
           <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-green-600"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-              />
-            </svg>
+            <Image
+              src="/icons/sparkles.svg"
+              alt="Considerations"
+              width={24}
+              height={24}
+              style={{
+                filter:
+                  "brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%)",
+              }}
+            />
             工夫点・意識した点
           </h3>
           <div className="flex flex-col gap-3">
@@ -295,20 +269,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-blue-50/50 rounded-xl p-6 shadow-sm">
           <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-blue-600"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
-              />
-            </svg>
+            <Image
+              src="/icons/code.svg"
+              alt="Technologies"
+              width={24}
+              height={24}
+              style={{
+                filter:
+                  "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(101%)",
+              }}
+            />
             技術スタック
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -325,20 +295,16 @@ export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
 
         <div className="bg-gray-50/50 rounded-xl p-6 shadow-sm">
           <h3 className="mb-4 text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-gray-600"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-              />
-            </svg>
+            <Image
+              src="/icons/calendar.svg"
+              alt="Period"
+              width={24}
+              height={24}
+              style={{
+                filter:
+                  "brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%)",
+              }}
+            />
             期間
           </h3>
           <p className="text-gray-700 bg-white/80 rounded-lg p-3 shadow-sm">

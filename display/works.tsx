@@ -92,19 +92,13 @@ const Works = () => {
                     >
                       <span className="flex items-center justify-center gap-2 font-extrabold">
                         Details
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                        <Image
+                          src="/icons/arrow-right.svg"
+                          alt="Arrow right"
+                          width={16}
+                          height={16}
+                          className="group-hover:translate-x-1 transition-transform brightness-0 invert"
+                        />
                       </span>
                     </button>
                     {project.githubUrl && (
@@ -116,19 +110,17 @@ const Works = () => {
                       >
                         <span className="flex items-center justify-center gap-2">
                           GitHub
-                          <svg
-                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
+                          <Image
+                            src="/icons/arrow-right.svg"
+                            alt="Arrow right"
+                            width={16}
+                            height={16}
+                            className="group-hover:translate-x-1 transition-transform group-hover:brightness-0 group-hover:invert"
+                            style={{
+                              filter:
+                                "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(101%)",
+                            }}
+                          />
                         </span>
                       </a>
                     )}
