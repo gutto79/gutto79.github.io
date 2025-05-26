@@ -8,16 +8,16 @@ type PopUpProps = {
 
 export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
   return (
-    <div className="z-30">
+    <div className="relative z-[100]">
       {/* オーバーレイ */}
       <div
-        className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[99] bg-black/50 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}
       />
       <div
-        className={`fixed left-1/2 top-1/2 flex h-[80%] max-h-[90vh] w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
+        className={`fixed left-1/2 top-1/2 z-[100] flex h-[80%] max-h-[90vh] w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
           isOpen
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"

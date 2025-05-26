@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import BackgroundDecorations from "@/components/BackgroundDecorations";
 
 const Profile = () => {
   return (
     <section
       id="profile"
-      className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100"
+      className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      <BackgroundDecorations />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4 inline-block">

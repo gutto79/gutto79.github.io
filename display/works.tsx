@@ -3,6 +3,7 @@ import { ProjectModal } from "@/components/ProjectModal";
 import { PopUp } from "@/components/PopUp";
 import { useModal } from "@/hooks/useModal";
 import Image from "next/image";
+import BackgroundDecorations from "@/components/BackgroundDecorations";
 
 type ProjectTag =
   | "research"
@@ -238,8 +239,9 @@ const Works = () => {
   };
 
   return (
-    <section id="works" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="works" className="py-20 bg-gray-50 relative overflow-hidden">
+      <BackgroundDecorations />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2 inline-block">

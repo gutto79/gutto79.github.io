@@ -1,242 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import { Star, StarHalf } from "lucide-react";
+import { skillCategories } from "@/types/skills";
+import BackgroundDecorations from "@/components/BackgroundDecorations";
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      name: "Language",
-      skills: [
-        {
-          name: "TypeScript",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/typescript.svg"
-              alt="TypeScript"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Python",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/python.svg"
-              alt="Python"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Ruby",
-          level: 2,
-          icon: (
-            <Image
-              src="/icons/ruby.svg"
-              alt="Ruby"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Java",
-          level: 1,
-          icon: (
-            <Image
-              src="/icons/java.svg"
-              alt="Java"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "R",
-          level: 1,
-          icon: (
-            <Image
-              src="/icons/r.svg"
-              alt="R"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-      ],
-    },
-    {
-      name: "Framework",
-      skills: [
-        {
-          name: "Next.js",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/nextjs.svg"
-              alt="Next.js"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Ruby on Rails",
-          level: 2,
-          icon: (
-            <Image
-              src="/icons/rails.svg"
-              alt="Ruby on Rails"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "React",
-          level: 2,
-          icon: (
-            <Image
-              src="/icons/react.svg"
-              alt="React"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Vite",
-          level: 2,
-          icon: (
-            <Image
-              src="/icons/vite.svg"
-              alt="Vite"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-      ],
-    },
-    {
-      name: "DB & Cloud Service",
-      skills: [
-        {
-          name: "PostgreSQL",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/database.svg"
-              alt="Database"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-        {
-          name: "Supabase",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/supabase.svg"
-              alt="Supabase"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-      ],
-    },
-    {
-      name: "Dev Tools",
-      skills: [
-        {
-          name: "Git / GitHub",
-          level: 3,
-          icon: (
-            <Image
-              src="/icons/git.svg"
-              alt="Git"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-      ],
-    },
-    {
-      name: "Others",
-      skills: [
-        {
-          name: "TOEIC",
-          level: 895,
-          icon: (
-            <Image
-              src="/icons/toeic.svg"
-              alt="TOEIC"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-          ),
-          description: "",
-          details: [],
-        },
-      ],
-    },
-  ];
-
   const renderStars = (level: number, name?: string) => {
     // TOEICスコアの場合は特別な表示
     if (name === "TOEIC") {
       return (
-        <div className="flex flex-col items-end">
-          <div className="text-2xl font-bold text-blue-600">{level}</div>
-          <div className="text-sm text-gray-500">2024年4月取得</div>
+        <div className="flex flex-col items-center">
+          <div className="text-lg font-bold text-cyan-600">{level}</div>
+          <div className="text-xs text-gray-500">2024年4月</div>
         </div>
       );
     }
 
-    if (level > 100) return `${level}`; // その他のスコア表示の場合
+    if (level > 100) return `${level}`;
 
     const stars = [];
     const fullStars = Math.floor(level);
@@ -246,7 +27,7 @@ const Skills = () => {
       stars.push(
         <Star
           key={`full-${i}`}
-          className="w-5 h-5 fill-yellow-400 text-yellow-400"
+          className="w-3 h-3 fill-yellow-400 text-yellow-400 drop-shadow-sm"
         />
       );
     }
@@ -254,106 +35,157 @@ const Skills = () => {
       stars.push(
         <StarHalf
           key="half"
-          className="w-5 h-5 fill-yellow-400 text-yellow-400"
+          className="w-3 h-3 fill-yellow-400 text-yellow-400 drop-shadow-sm"
         />
       );
     }
     const emptyStars = 4 - stars.length;
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Star key={`empty-${i}`} className="w-5 h-5 text-gray-300" />);
+      stars.push(<Star key={`empty-${i}`} className="w-3 h-3 text-gray-300" />);
     }
 
-    return <div className="flex gap-0.5">{stars}</div>;
+    return <div className="flex gap-0.5 justify-center">{stars}</div>;
   };
 
   return (
-    <section id="skills" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2 inline-block">
+    <section
+      id="skills"
+      className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50 relative overflow-hidden"
+    >
+      <BackgroundDecorations />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl border-b-4 border-blue-600 pb-2 font-bold text-gray-800 mb-4 inline-block relative">
               Skills
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></div>
             </h2>
           </div>
 
           {/* スキルレベルの説明 */}
-          <div className="mb-8 p-6 bg-gray-50 rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+          <div className="mb-12 p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-100/50">
+            <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center relative">
               スキルレベルの説明
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
             </h3>
-            <div className="space-y-2 text-gray-600">
-              <p>
-                ⭐️⭐️⭐️⭐️ (リードレベル)
-                <br />
-                複雑な問題解決やシステム設計を主導し、メンバーの指導もできる。
-              </p>
-              <p>
-                ⭐️⭐️⭐️ (実務レベル)
-                <br />
-                チームの一員として自律的に担当業務の開発を進めることができる。
-                <br />
-                研究や長期インターンで継続的に使用している。
-              </p>
-              <p>
-                ⭐️⭐️ (基礎開発レベル)
-                <br />
-                自力で調べながら、小規模で単純なアプリケーションや機能を作成できる。
-                <br />
-                開発で用いたことがある。
-              </p>
-              <p>
-                ⭐️ (入門レベル)
-                <br />
-                学部や院の授業で触れ、基本的な操作ができる。
-              </p>
+            <div className="grid md:grid-cols-2 gap-6 text-gray-600">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                  <div className="flex gap-0.5 mt-1">
+                    {[...Array(4)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">(リードレベル)</p>
+                    <p className="text-sm">
+                      複雑な問題解決やシステム設計を主導し、メンバーの指導もできる。
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                  <div className="flex gap-0.5 mt-1">
+                    {[...Array(3)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                    <Star className="w-4 h-4 text-gray-300" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">(実務レベル)</p>
+                    <p className="text-sm">
+                      チームの一員として自律的に担当業務の開発を進めることができる。研究や長期インターンで継続的に使用している。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                  <div className="flex gap-0.5 mt-1">
+                    {[...Array(2)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                    {[...Array(2)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-gray-300" />
+                    ))}
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">
+                      (基礎開発レベル)
+                    </p>
+                    <p className="text-sm">
+                      自力で調べながら、小規模で単純なアプリケーションや機能を作成できる。開発で用いたことがある。
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                  <div className="flex gap-0.5 mt-1">
+                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    {[...Array(3)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-gray-300" />
+                    ))}
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">(入門レベル)</p>
+                    <p className="text-sm">
+                      学部や院の授業で触れ、基本的な操作ができる。
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* カテゴリーごとのスキル表示 */}
           <div className="space-y-12">
             {skillCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="space-y-6">
-                <h3 className="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
-                  {category.name}
-                </h3>
-                <div className="space-y-4">
+              <div key={categoryIndex}>
+                <div className="text-center mb-8">
+                  <h3
+                    className={`text-2xl font-bold text-gray-800 mb-4 inline-block px-6 py-3 rounded-2xl bg-gradient-to-r ${category.bgColor} border-2 border-white/50 shadow-lg`}
+                  >
+                    {category.name}
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex items-start gap-6 p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                      className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-blue-100/50"
                     >
-                      {/* アイコン */}
-                      <div className="flex-shrink-0 w-16 h-16 rounded-lg flex items-center justify-center text-gray-700 [&>svg]:w-10 [&>svg]:h-10">
-                        {skill.icon}
-                      </div>
-
-                      {/* スキル詳細 */}
-                      <div className="flex-grow">
-                        <div className="flex justify-between items-center mb-2">
-                          <h3 className="text-xl font-semibold text-gray-800">
-                            {skill.name}
-                          </h3>
-                          <div className="text-sm font-medium text-gray-600">
-                            {renderStars(skill.level, skill.name)}
+                      <div className="text-center">
+                        {/* アイコン */}
+                        <div className="flex justify-center mb-4">
+                          <div
+                            className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.bgColor} flex items-center justify-center shadow-sm border border-white/50`}
+                          >
+                            <Image
+                              src={skill.iconPath}
+                              alt={skill.name}
+                              width={32}
+                              height={32}
+                              className="w-8 h-8"
+                            />
                           </div>
                         </div>
 
-                        {skill.description && (
-                          <div className="text-gray-600 mb-3 whitespace-pre-line">
-                            {skill.description}
-                          </div>
-                        )}
+                        {/* スキル名 */}
+                        <h4 className="text-base font-semibold text-gray-800 mb-3 leading-tight">
+                          {skill.name}
+                        </h4>
 
-                        {/* 詳細タグ */}
-                        <div className="flex flex-wrap gap-2">
-                          {skill.details.map((detail, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-blue-500/10 to-blue-600/10 text-blue-700 rounded-full border border-blue-200/50"
-                            >
-                              {detail}
-                            </span>
-                          ))}
+                        {/* スキルレベル */}
+                        <div className="mb-2">
+                          {renderStars(skill.level, skill.name)}
                         </div>
                       </div>
                     </div>
