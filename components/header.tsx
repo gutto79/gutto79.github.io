@@ -26,25 +26,25 @@ const Header = () => {
           <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection("profile")}
-              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+              className="text-gray-300 hover:text-blue-400 transition-colors font-semibold"
             >
               Profile
             </button>
             <button
               onClick={() => scrollToSection("skills")}
-              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+              className="text-gray-300 hover:text-blue-400 transition-colors font-semibold"
             >
               Skills
             </button>
             <button
               onClick={() => scrollToSection("works")}
-              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+              className="text-gray-300 hover:text-blue-400 transition-colors font-semibold"
             >
               Works
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+              className="text-gray-300 hover:text-blue-400 transition-colors font-semibold"
             >
               Connect
             </button>
@@ -81,25 +81,25 @@ const Header = () => {
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("profile")}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-medium"
+                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-semibold"
               >
                 Profile
               </button>
               <button
                 onClick={() => scrollToSection("skills")}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-medium"
+                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-semibold"
               >
                 Skills
               </button>
               <button
                 onClick={() => scrollToSection("works")}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-medium"
+                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-semibold"
               >
                 Works
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-medium"
+                className="text-gray-300 hover:text-blue-400 transition-colors text-left font-semibold"
               >
                 Contact
               </button>

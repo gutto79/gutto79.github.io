@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { useScrollLock } from "@/hooks/useScrollLock";
 
 type PopUpProps = {
   isOpen: boolean;
@@ -8,7 +7,6 @@ type PopUpProps = {
 };
 
 export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
-  useScrollLock(isOpen);
   return (
     <div className="z-30">
       {/* オーバーレイ */}

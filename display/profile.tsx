@@ -47,7 +47,7 @@ const Profile = () => {
                   ヒューマンロボットインタラクション研究室に所属し、人間とロボットの関わり方について研究しています。
                   <br />
                   また、株式会社STAR
-                  UPにて主にフロントエンドエンジニアとしてWebアプリケーションの開発に携わっています。
+                  UP(https://starup01.jp/)にて主にフロントエンドエンジニアとしてWebアプリケーションの開発に携わっています。
                 </p>
               </div>
             </div>
@@ -95,6 +95,8 @@ const Profile = () => {
                         </h5>
                         <p className="text-sm text-gray-600 mt-1">
                           ヒューマンロボットインタラクション研究室
+                          <br />
+                          (https://www.robot.soc.i.kyoto-u.ac.jp/)
                         </p>
                       </div>
                     </div>

@@ -22,8 +22,10 @@ const Hero = () => {
                 Genki Kimura
               </span>
             </h1>
-            <div className="text-2xl md:text-3xl font-light text-gray-300 tracking-wider">
-              <span className="border-l-4 border-blue-400 pl-4">Portfolio</span>
+            <div className="text-3xl md:text-5xl font-bold tracking-wider">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-2xl">
+                Portfolio
+              </span>
             </div>
           </div>
 
@@ -76,7 +78,7 @@ const Hero = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    d="M9 5l7 7-7 7"
                   />
                 </svg>
               </span>

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScrollLock } from "@/hooks/useScrollLock";
+
 type ProjectModalProps = {
   project: {
     title: string;
@@ -10,16 +12,29 @@ type ProjectModalProps = {
     role?: string;
     period: string;
   };
+  isOpen?: boolean;
 };
 
-export const ProjectModal = ({ project }: ProjectModalProps) => {
+export const ProjectModal = ({ project, isOpen = true }: ProjectModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  useScrollLock(isOpen);
+
+  // Reset state when project changes or modal is closed
+  useEffect(() => {
+    if (!isOpen) {
+      setCurrentImageIndex(0);
+      setDirection(0);
+      setIsAnimating(false);
+    }
+  }, [project, isOpen]);
+
   const handlePreviousImage = () => {
     if (isAnimating) return;
     setDirection(-1);
+    setIsAnimating(true);
     setCurrentImageIndex((prev) =>
       prev === 0 ? project.images.length - 1 : prev - 1
     );
@@ -28,6 +43,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => {
   const handleNextImage = () => {
     if (isAnimating) return;
     setDirection(1);
+    setIsAnimating(true);
     setCurrentImageIndex((prev) =>
       prev === project.images.length - 1 ? 0 : prev + 1
     );
@@ -56,32 +72,33 @@ export const ProjectModal = ({ project }: ProjectModalProps) => {
           custom={direction}
           onExitComplete={() => setIsAnimating(false)}
         >
-          <motion.div
-            key={currentImageIndex}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            onAnimationStart={() => setIsAnimating(true)}
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-            className="absolute inset-0"
-            style={{ width: "100%", height: "100%" }}
-          >
-            <div className="relative w-full h-full">
-              <Image
-                src={project.images[currentImageIndex]}
-                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
-                priority
-              />
-            </div>
-          </motion.div>
+          {project.images[currentImageIndex] && (
+            <motion.div
+              key={currentImageIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              className="absolute inset-0"
+              style={{ width: "100%", height: "100%" }}
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  src={project.images[currentImageIndex]}
+                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
+                  priority
+                />
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {project.images.length > 1 && (
@@ -140,6 +157,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => {
                   onClick={() => {
                     if (isAnimating) return;
                     setDirection(index > currentImageIndex ? 1 : -1);
+                    setIsAnimating(true);
                     setCurrentImageIndex(index);
                   }}
                   disabled={isAnimating}
@@ -184,7 +202,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => {
             {project.technologies.map((tech, index) => (
               <span
                 key={index}
-                className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800"
+                className="px-3 py-1 text-sm bg-gradient-to-r from-blue-500/10 to-blue-600/10 text-blue-700 rounded border border-blue-200/50"
               >
                 {tech}
               </span>

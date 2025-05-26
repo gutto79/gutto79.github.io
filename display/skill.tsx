@@ -4,7 +4,7 @@ import { Star, StarHalf } from "lucide-react";
 const Skills = () => {
   const skillCategories = [
     {
-      name: "プログラミング言語",
+      name: "Language",
       skills: [
         {
           name: "TypeScript",
@@ -84,7 +84,7 @@ const Skills = () => {
       ],
     },
     {
-      name: "フレームワーク",
+      name: "Framework",
       skills: [
         {
           name: "Next.js",
@@ -119,7 +119,7 @@ const Skills = () => {
       ],
     },
     {
-      name: "データベース・クラウドサービス",
+      name: "DB & Cloud Service",
       skills: [
         {
           name: "RDB",
@@ -154,7 +154,7 @@ const Skills = () => {
       ],
     },
     {
-      name: "開発ツール",
+      name: "Dev Tools",
       skills: [
         {
           name: "Git / GitHub",
@@ -174,7 +174,7 @@ const Skills = () => {
       ],
     },
     {
-      name: "その他",
+      name: "Others",
       skills: [
         {
           name: "TOEIC",
@@ -241,8 +241,9 @@ const Skills = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Skills</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2 inline-block">
+              Skills
+            </h2>
           </div>
 
           {/* スキルレベルの説明 */}
@@ -321,7 +322,7 @@ const Skills = () => {
                           {skill.details.map((detail, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full"
+                              className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-blue-500/10 to-blue-600/10 text-blue-700 rounded-full border border-blue-200/50"
                             >
                               {detail}
                             </span>
