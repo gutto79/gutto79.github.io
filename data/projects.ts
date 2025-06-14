@@ -28,7 +28,7 @@ export const projects: Project[] = [
       "売上予測の可視化",
       "需要予測を組み込んだ発注量提案",
     ],
-    role: ["UI/UX実装", "UI/UX改善の提案", "単体テスト"],
+    role: ["UI/UX実装", "UI/UX改善の提案", "単体・結合テスト"],
     considerations: [
       "質を担保しつつ提示された期限よりも早くタスクを終わらせること",
       "与えられたタスクをこなすだけではなく、UI/UX設計、API設計に改善点があれば積極的に改善の提案を行うこと",
@@ -155,21 +155,21 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    title: "Happiness Visualization(仮)",
+    title: "パートナー幸福度可視化アプリ",
     description:
-      "学内ハッカソンで開発中のアプリケーション。パートナー間で「嬉しいこと」や「嫌なこと」を数値化して入力し、リアルタイムで幸福度を可視化することで、価値観の相互理解を深めることを目的としている。5人チームでの開発でリーダーを担当。※上記画像は開発中の画像です",
+      "学内ハッカソンにて開発したアプリ。各ユーザーがパートナーに「されて嬉しい行動」や「されて嫌な行動」を幸福度の変動値と共に入力することで、パートナーはユーザーの幸福度をリアルタイムで確認することができる。また、お互いの過去の行動をスライドショーで振り返る機能を搭載し、幸福度の変遷を再認識する機会を設けている。カップルがこのアプリを用いることで、価値観の相互理解を深めることを目的としている。5人チームのリーダーとして開発を主導し、結果として10チーム中3位に入賞した。",
     features: [
-      "リアルタイムでの幸福度可視化",
-      "カップルの過去の行動のスライドショー表示",
+      "リアルタイムでのパートナーの幸福度可視化",
+      "過去の行動のスライドショー表示",
     ],
     role: [
       "プロジェクト進行管理、タスク管理、タスク振り分け",
       "各ページの雛形作成",
+      "API実装",
       "コードレビュー、リファクタリング",
-      "DB設計",
     ],
     considerations: [
-      "notion,slackを用いたタスク管理、タスク振り、進歩状況の共有を徹底",
+      "Notion,Slackを用いたタスク管理、タスク振り、進歩状況の共有を徹底",
     ],
     challenges: [
       "開発経験が少ないチームでの開発",
@@ -177,7 +177,11 @@ export const projects: Project[] = [
     ],
     learnings: ["notionを用いた徹底的なタスク管理、タスク振り"],
     technologies: ["Next.js", "TypeScript", "Supabase"],
-    images: ["/images/works/happiness_app/home.webp"],
+    images: [
+      "/images/works/happiness_app/home.webp",
+      "/videos/works/happiness_app/slide_show.webm",
+      "/videos/works/happiness_app/demo.webm",
+    ],
     githubUrl:
       "https://github.com/gutto79/practice_of_information_systems_pr1_group03",
     period: "2025年4月 - 6月",

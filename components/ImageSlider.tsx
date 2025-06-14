@@ -2,6 +2,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useImageSlider } from "@/hooks/useImageSlider";
 import { slideVariants, slideTransition } from "@/utils/slider";
+import { VideoPlayer } from "@/components/VideoPlayer";
+import { getMediaType } from "@/utils/media";
 
 type ImageSliderProps = {
   images: string[];
@@ -32,11 +34,14 @@ export const ImageSlider = ({
         className={`relative h-[250px] sm:h-[300px] md:h-[400px] w-full overflow-hidden rounded-xl bg-gray-50 shadow-lg ${className}`}
       >
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <span className="text-gray-400 text-sm">No Image</span>
+          <span className="text-gray-400 text-sm">No Media</span>
         </div>
       </div>
     );
   }
+
+  const currentMedia = images[currentImageIndex];
+  const mediaType = getMediaType(currentMedia);
 
   return (
     <div
@@ -47,7 +52,7 @@ export const ImageSlider = ({
         custom={direction}
         onExitComplete={handleAnimationComplete}
       >
-        {images[currentImageIndex] && (
+        {currentMedia && (
           <motion.div
             key={currentImageIndex}
             custom={direction}
@@ -60,14 +65,18 @@ export const ImageSlider = ({
             style={{ width: "100%", height: "100%" }}
           >
             <div className="relative w-full h-full">
-              <Image
-                src={images[currentImageIndex]}
-                alt={`${title} - Image ${currentImageIndex + 1}`}
-                fill
-                className="object-contain p-4"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
-                priority
-              />
+              {mediaType === "video" ? (
+                <VideoPlayer src={currentMedia} className="p-4" />
+              ) : (
+                <Image
+                  src={currentMedia}
+                  alt={`${title} - Media ${currentImageIndex + 1}`}
+                  fill
+                  className="object-contain p-4"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
+                  priority
+                />
+              )}
             </div>
           </motion.div>
         )}
@@ -81,7 +90,7 @@ export const ImageSlider = ({
             className={`absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/90 p-3 text-gray-800 shadow-lg transition-all ${
               isAnimating ? "opacity-50" : "hover:bg-white hover:scale-110"
             }`}
-            aria-label="Previous image"
+            aria-label="Previous media"
           >
             <Image
               src="/icons/arrow-left.svg"
@@ -97,7 +106,7 @@ export const ImageSlider = ({
             className={`absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/90 p-3 text-gray-800 shadow-lg transition-all ${
               isAnimating ? "opacity-50" : "hover:bg-white hover:scale-110"
             }`}
-            aria-label="Next image"
+            aria-label="Next media"
           >
             <Image
               src="/icons/arrow-right.svg"
@@ -109,21 +118,25 @@ export const ImageSlider = ({
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleImageSelect(index)}
-                disabled={isAnimating}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
-                  index === currentImageIndex
-                    ? "bg-blue-600 scale-125"
-                    : isAnimating
-                    ? "bg-gray-200"
-                    : "bg-gray-300 hover:bg-gray-400 hover:scale-110"
-                }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
+            {images.map((media, index) => {
+              const type = getMediaType(media);
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleImageSelect(index)}
+                  disabled={isAnimating}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                    index === currentImageIndex
+                      ? "bg-blue-600 scale-125"
+                      : isAnimating
+                      ? "bg-gray-200"
+                      : "bg-gray-300 hover:bg-gray-400 hover:scale-110"
+                  }`}
+                  aria-label={`Go to ${type} ${index + 1}`}
+                  title={`${type === "video" ? "動画" : "画像"} ${index + 1}`}
+                />
+              );
+            })}
           </div>
         </>
       )}
