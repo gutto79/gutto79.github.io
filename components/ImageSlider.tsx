@@ -66,7 +66,9 @@ export const ImageSlider = ({
           >
             <div className="relative w-full h-full">
               {mediaType === "video" ? (
-                <VideoPlayer src={currentMedia} className="p-4" />
+                <div className="w-full h-full flex items-center justify-center">
+                  <VideoPlayer src={currentMedia} className="p-4" />
+                </div>
               ) : (
                 <Image
                   src={currentMedia}

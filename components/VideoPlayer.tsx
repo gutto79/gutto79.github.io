@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 interface VideoPlayerProps {
   src: string;
@@ -7,6 +7,12 @@ interface VideoPlayerProps {
 
 export const VideoPlayer = ({ src, className = "" }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, [src]);
 
   return (
     <video
