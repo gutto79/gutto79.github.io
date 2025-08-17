@@ -40,13 +40,13 @@ export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
         aria-hidden={!isOpen}
       >
         {/* ポップアップパネル */}
-        <div className="h-full w-full flex-1 rounded-lg bg-white shadow-xl transition-all duration-300">
+        <div className="h-full w-full flex-1 rounded-lg bg-gray-900 shadow-xl transition-all duration-300">
           <div className="flex h-full flex-col">
             {/* ヘッダー */}
             <div className="flex justify-end px-4 pt-4">
               <button
                 onClick={onClose}
-                className="text-2xl font-bold text-gray-400 transition-colors hover:text-gray-600"
+                className="text-2xl font-bold text-gray-400 transition-colors hover:text-white"
                 aria-label="Close popup"
               >
                 ×

@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Gamba Osaka Color Palette */
+  --gamba-blue: #002d72;
+  --gamba-deep-blue: #001a4d;
+  --gamba-black: #000000;
+  --gamba-sky: #0066cc;
+  --gamba-white: #ffffff;
+  --gamba-success: #10b981;
+  
+  --background: linear-gradient(135deg, var(--gamba-blue) 0%, var(--gamba-deep-blue) 100%);
+  --foreground: var(--gamba-white);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: var(--gamba-blue);
+  --color-foreground: var(--gamba-white);
+  --font-sans: var(--font-noto-sans-jp);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -24,73 +25,601 @@ body {
   color: var(--foreground);
   font-family: var(--font-noto-sans-jp), sans-serif;
   font-weight: 500;
+  min-height: 100vh;
 }
 
-/* 光の点のアニメーション */
-@keyframes moveVerticalPoint {
+/* ========== Gamba Osaka Soccer Animations ========== */
+
+/* ========== Enhanced Fade Animations ========== */
+
+/* Base fade animation classes */
+.fade-in-base {
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInScale {
   0% {
-    transform: translateY(-100vh);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Utility classes for fade animations */
+.fade-in-scale {
+  animation: fadeInScale 1.2s ease-out both;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.fade-in-down {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.8s ease-out both;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.8s ease-out both;
+}
+
+/* Delayed fade animations */
+.fade-in-up-delay-1 {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.fade-in-up-delay-3 {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.fade-in-scale-delay-1 {
+  animation: fadeInScale 1.2s ease-out 0.3s both;
+}
+
+/* Variable delay animations */
+.fade-in-up-var {
+  animation: fadeInUp 0.8s ease-out var(--delay, 0s) both;
+}
+
+.fade-in-down-var {
+  animation: fadeInDown 0.8s ease-out var(--delay, 0s) both;
+}
+
+.fade-in-left-var {
+  animation: fadeInLeft 0.8s ease-out var(--delay, 0s) both;
+}
+
+.fade-in-right-var {
+  animation: fadeInRight 0.8s ease-out var(--delay, 0s) both;
+}
+
+.fade-in-scale-var {
+  animation: fadeInScale 1.2s ease-out var(--delay, 0s) both;
+}
+
+/* ========== Scroll-Triggered Animations ========== */
+
+/* Base animation element */
+.scroll-animate {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-scale {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hidden states */
+.scroll-hidden {
+  opacity: 0;
+}
+
+.scroll-hidden.from-up {
+  transform: translateY(-50px);
+}
+
+.scroll-hidden.from-down {
+  transform: translateY(50px);
+}
+
+.scroll-hidden.from-left {
+  transform: translateX(-50px);
+}
+
+.scroll-hidden.from-right {
+  transform: translateX(50px);
+}
+
+.scroll-hidden.from-scale {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Visible states */
+.scroll-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Staggered animations with custom delays */
+.scroll-stagger-1 {
+  transition-delay: 0.05s;
+}
+
+.scroll-stagger-2 {
+  transition-delay: 0.1s;
+}
+
+.scroll-stagger-3 {
+  transition-delay: 0.15s;
+}
+
+.scroll-stagger-4 {
+  transition-delay: 0.2s;
+}
+
+.scroll-stagger-5 {
+  transition-delay: 0.25s;
+}
+
+.scroll-stagger-6 {
+  transition-delay: 0.3s;
+}
+
+/* Soccer Pitch Background */
+.soccer-pitch-alt {
+  position: relative;
+  background: linear-gradient(135deg, #002d72 0%, #001a4d 100%);
+  overflow: hidden;
+}
+
+.soccer-pitch-alt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    /* Center circle */
+    radial-gradient(circle at 50% 50%, transparent 8%, rgba(0,102,204,0.15) 8%, rgba(0,102,204,0.15) 8.5%, transparent 8.5%),
+    /* Center line - vertical */
+    linear-gradient(to right, transparent 49.7%, rgba(0,102,204,0.15) 49.7%, rgba(0,102,204,0.15) 50.3%, transparent 50.3%),
+    /* Top and bottom lines (sidelines) */
+    linear-gradient(to bottom, rgba(0,102,204,0.2) 0%, rgba(0,102,204,0.2) 0.5%, transparent 0.5%, transparent 99.5%, rgba(0,102,204,0.2) 99.5%, rgba(0,102,204,0.2) 100%),
+    /* Left and right goal lines */
+    linear-gradient(to right, rgba(0,102,204,0.2) 0%, rgba(0,102,204,0.2) 0.3%, transparent 0.3%, transparent 99.7%, rgba(0,102,204,0.2) 99.7%, rgba(0,102,204,0.2) 100%),
+    /* Field pattern - vertical stripes */
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,102,204,0.02) 0px,
+      rgba(0,102,204,0.02) 10%,
+      transparent 10%,
+      transparent 20%
+    );
+  pointer-events: none;
+}
+
+/* Soccer Ball Animations */
+@keyframes ballRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ballRoll {
+  0% {
+    transform: translateX(-100vw) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100vw) rotate(720deg);
+  }
+}
+
+/* Formation Deployment */
+@keyframes formationDeploy {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  33% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  66% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Border Expansion */
+@keyframes borderExpand {
+  0% {
+    clip-path: inset(50% 50% 50% 50%);
+  }
+  25% {
+    clip-path: inset(25% 50% 75% 50%);
+  }
+  50% {
+    clip-path: inset(25% 25% 75% 75%);
+  }
+  75% {
+    clip-path: inset(25% 25% 25% 75%);
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+}
+
+/* Kickoff Animation */
+@keyframes kickoffFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Goal Celebration */
+@keyframes goalCelebration {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-10px);
+  }
+  50% {
+    transform: scale(0.9) translateY(5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Crowd Wave */
+@keyframes crowdWave {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  33% {
+    opacity: 0.6;
+    transform: translateY(-5px) scale(1.05);
+  }
+  66% {
+    opacity: 0.8;
+    transform: translateY(2px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pitch Line Drawing */
+@keyframes pitchLineDraw {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+  100% {
+    stroke-dasharray: 100 0;
+  }
+}
+
+/* Progress Fill */
+@keyframes progressFill {
+  0% { 
+    transform: translateX(-100%); 
+  }
+  100% { 
+    transform: translateX(0); 
+  }
+}
+
+/* ========== Utility Classes ========== */
+
+/* Staggered Animation Delays */
+.fade-stagger-1 { animation-delay: 100ms; }
+.fade-stagger-2 { animation-delay: 200ms; }
+.fade-stagger-3 { animation-delay: 300ms; }
+.fade-stagger-4 { animation-delay: 400ms; }
+.fade-stagger-5 { animation-delay: 500ms; }
+
+/* Formation Position Classes */
+.formation-defense {
+  animation: fadeInLeft 0.8s ease-out 0.2s both, formationDeploy 2s ease-out 1s both;
+}
+
+.formation-midfield {
+  animation: fadeInUp 0.8s ease-out 0.4s both, formationDeploy 2s ease-out 1.2s both;
+}
+
+.formation-forward {
+  animation: fadeInRight 0.8s ease-out 0.6s both, formationDeploy 2s ease-out 1.4s both;
+}
+
+/* Card Background */
+.card-background {
+  background: rgba(0, 45, 114, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--gamba-blue);
+  border-radius: 8px;
+}
+
+/* Hover Effects */
+.hover-gamba:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 45, 114, 0.3);
+  border-color: var(--gamba-sky);
+  background: linear-gradient(135deg, var(--gamba-sky) 0%, var(--gamba-blue) 100%);
+}
+
+/* Soccer Ball Rotation */
+.soccer-ball {
+  animation: ballRotate 8s linear infinite;
+}
+
+.soccer-ball-reverse {
+  animation: ballRotate 8s linear infinite reverse;
+}
+
+/* ========== Additional Soccer Animations ========== */
+
+/* Floating Soccer Ball */
+@keyframes ballFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
+}
+
+.soccer-ball-float {
+  animation: ballFloat 3s ease-in-out infinite;
+}
+
+/* Ball Bounce */
+@keyframes ballBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  40% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+  60% {
+    transform: translateY(-10px) rotate(270deg);
+  }
+}
+
+.soccer-ball-bounce {
+  animation: ballBounce 2s ease-in-out infinite;
+}
+
+/* Stagger Delays */
+.stagger-100 { animation-delay: 100ms; }
+.stagger-200 { animation-delay: 200ms; }
+.stagger-300 { animation-delay: 300ms; }
+.stagger-400 { animation-delay: 400ms; }
+.stagger-500 { animation-delay: 500ms; }
+.stagger-600 { animation-delay: 600ms; }
+
+/* Progress Bar Animation */
+@keyframes progressScore {
+  0% {
+    width: 0%;
     opacity: 0;
   }
   10% {
     opacity: 1;
   }
-  90% {
-    opacity: 1;
-  }
   100% {
-    transform: translateY(100vh);
-    opacity: 0;
+    width: var(--progress-width);
+    opacity: 1;
   }
 }
 
-@keyframes moveVerticalPointReverse {
+.progress-score {
+  animation: progressScore 2s ease-out var(--delay, 0s) both;
+}
+
+/* Scoreboard Counter */
+@keyframes scoreCount {
   0% {
-    transform: translateY(100vh);
+    transform: scale(0.5);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
   }
   100% {
-    transform: translateY(-100vh);
-    opacity: 0;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-@keyframes moveHorizontalPoint {
-  0% {
-    transform: translateX(-100vw);
-    opacity: 0;
+.score-counter {
+  animation: scoreCount 1s ease-out var(--delay, 0s) both;
+}
+
+/* Glow Effect */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100vw);
-    opacity: 0;
+  50% {
+    box-shadow: 0 0 30px rgba(0, 102, 204, 0.8), 0 0 40px rgba(0, 102, 204, 0.4);
   }
 }
 
-@keyframes moveHorizontalPointReverse {
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Slide In Animations */
+@keyframes slideInFromLeft {
   0% {
-    transform: translateX(100vw);
+    transform: translateX(-100px);
     opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
   }
   100% {
-    transform: translateX(-100vw);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100px);
     opacity: 0;
   }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out var(--delay, 0s) both;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.8s ease-out var(--delay, 0s) both;
+}
+
+/* Rotate Scale Animation */
+@keyframes rotateScale {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.rotate-scale {
+  animation: rotateScale 3s ease-in-out infinite;
+}
+
+/* Text Typing Effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #0066cc;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  border-right: 3px solid #0066cc;
+  white-space: nowrap;
+  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Wave Animation for Contact */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(-15px);
+  }
+}
+
+.wave-animation {
+  animation: wave 2s ease-in-out infinite var(--delay, 0s);
 }

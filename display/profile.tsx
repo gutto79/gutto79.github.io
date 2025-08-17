@@ -1,194 +1,282 @@
 import Image from "next/image";
 import Link from "next/link";
-import BackgroundDecorations from "@/components/BackgroundDecorations";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Profile = () => {
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+  const { elementRef: cardRef, isVisible: cardVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
+  const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
   return (
     <section
       id="profile"
-      className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden"
+      className="py-20 relative overflow-hidden text-white soccer-pitch-alt"
     >
-      <BackgroundDecorations />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+        <div className="w-full">
+          {/* Section Title */}
+          <div
+            ref={titleRef as React.RefObject<HTMLDivElement>}
+            className={`text-center mb-12 scroll-animate ${
+              titleVisible ? "scroll-visible" : "scroll-hidden from-down"
+            }`}
+          >
             <div className="relative inline-block mb-4">
-              <Image
-                src="/icons/profile.svg"
-                alt="Profile icon"
-                width={48}
-                height={48}
-                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
-              />
-              <h2 className="text-4xl font-bold text-gray-800">Profile</h2>
+              <span className="text-5xl mr-4">⚽</span>
+              <h2
+                className="text-4xl font-bold text-white inline"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                PROFILE
+              </h2>
             </div>
-            <div className="w-[120px] h-1 bg-blue-600 mx-auto"></div>
+            <div
+              className="w-[120px] h-1 mx-auto"
+              style={{ background: "linear-gradient(90deg, #0066cc, #002d72)" }}
+            ></div>
           </div>
 
-          <div className="space-y-12">
-            {/* 自己紹介 */}
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <div className="flex flex-col items-center gap-6 mb-6">
-                  <div className="relative w-48 h-48">
-                    <Image
-                      src="/images/profile/profile.webp"
-                      alt="木村原暉のプロフィール画像"
-                      fill
-                      className="object-cover rounded-lg"
-                      priority
-                      sizes="(max-width: 768px) 100vw, 192px"
-                    />
+          <div className="space-y-8 max-w-4xl mx-auto">
+            {/* Player Info Card - Soccer Player Style */}
+            <div
+              ref={cardRef as React.RefObject<HTMLDivElement>}
+              className={`scroll-animate ${
+                cardVisible
+                  ? "scroll-visible scroll-stagger-2"
+                  : "scroll-hidden from-down"
+              }`}
+            >
+              <div className="card-background p-8 rounded-xl border-2 border-blue-400/50">
+                {/* Player Header */}
+                <div className="flex flex-col md:flex-row gap-8 mb-8">
+                  {/* Photo and Number */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative">
+                      <div className="relative w-80 h-80 z-10">
+                        <Image
+                          src="/images/profile/profile.webp"
+                          alt="木村原暉のプロフィール画像"
+                          fill
+                          className="object-cover rounded-lg border-4 border-blue-400"
+                          priority
+                          sizes="(max-width: 768px) 100vw, 320px"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 text-center"></div>
                   </div>
 
-                  <div className="w-full space-y-3 text-center">
-                    <h3 className="text-3xl font-bold text-gray-800">
-                      <span className="block md:inline">木村原暉</span>
-                      <span className="block md:inline">(KIMURA GENKI)</span>
-                      <br />
-                      <div className="mt-3 w-full h-0.5 bg-gray-200"></div>
-                      <span className="text-lg font-semibold">
-                        京都大学大学院
-                        <br />
-                        情報学研究科 社会情報学専攻
-                        <span className="hidden md:inline">修士1回生</span>
-                        <span className="md:hidden">M1</span>
-                        <br />
+                  {/* Player Info */}
+                  <div className="flex-1 space-y-4 flex flex-col justify-center">
+                    <div className="border-b-2 border-blue-400/50 pb-3 text-center">
+                      <h3 className="text-3xl font-bold text-white mb-1">
+                        <span
+                          style={{ fontFamily: "Noto Sans JP, sans-serif" }}
+                        >
+                          木村 原暉
+                        </span>
+                        <span
+                          className="block text-xl text-blue-300 mt-1"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          KIMURA GENKI
+                        </span>
+                      </h3>
+                    </div>
+
+                    {/* Player Stats */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <span className="text-blue-300 text-xs">生年月日</span>
+                        <p className="text-white font-semibold text-sm">
+                          2001年4月29日
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-blue-300 text-xs">出身地</span>
+                        <p className="text-white font-semibold text-sm">
+                          大阪府
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-blue-300 text-xs">
+                          身長 / 体重
+                        </span>
+                        <p className="text-white font-semibold text-sm">
+                          171cm / 59kg
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-blue-300 text-xs">利き足</span>
+                        <p className="text-white font-semibold text-sm">右足</p>
+                      </div>
+                    </div>
+
+                    {/* Current Team */}
+                    <div className="mt-3 p-3 bg-white/10 rounded-lg">
+                      <span className="text-blue-300 text-base">現所属</span>
+                      <p className="text-white font-bold text-base mt-2">
                         <Link
                           href="https://www.robot.soc.i.kyoto-u.ac.jp/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 underline decoration-1 hover:decoration-2 transition-all"
+                          className="text-blue-100 hover:text-white underline decoration-1 hover:decoration-2 transition-all"
                         >
-                          <span className="md:hidden">HRI</span>
-                          <span className="hidden md:inline">
-                            ヒューマンロボットインタラクション
-                          </span>
-                          研究室
+                          京都大学大学院 情報学研究科 HRI研究室
                         </Link>
-                        <br />
+                      </p>
+                      <p className="text-white font-bold text-base mt-1">
                         <Link
                           href="https://starup01.jp/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 underline decoration-1 hover:decoration-2 transition-all"
+                          className="text-blue-100 hover:text-white underline decoration-1 hover:decoration-2 transition-all"
                         >
                           株式会社STAR UP 受託開発事業部
                         </Link>
-                      </span>
-                    </h3>
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-full h-0.5 bg-gray-200"></div>
                 </div>
-                <p className="text-gray-600 leading-relaxed">
-                  大学院ではヒューマンロボットインタラクション研究室に所属し、
-                  教育ロボットが授業内容に基づいたSNS投稿を生成・発信することで学生の学習効果を高める「ロボットによる授業関連SNS投稿生成システム」の研究に取り組んでいる。
-                  <br />
-                  また、株式会社STAR
-                  UPでは主にフロントエンドエンジニアとして、需要予測を組み込んだ発注業務支援アプリの開発に携わっている。
-                  <br />
-                </p>
+
+                {/* Play Style */}
+                <div className="border-t-2 border-blue-400/50 pt-6">
+                  <p
+                    className="text-blue-100 leading-relaxed"
+                    style={{ fontFamily: "Noto Sans JP, sans-serif" }}
+                  >
+                    大学院ではヒューマンロボットインタラクション研究室に所属し、
+                    教育ロボットが授業内容に基づいたSNS投稿を生成・発信することで学生の学習効果を高める「ロボットによる授業関連SNS投稿生成システム」の研究に取り組んでいる。
+                    <br />
+                    株式会社STAR
+                    UPでは、主にフロントエンドエンジニアとして、需要予測を組み込んだ発注業務支援アプリの開発に携わっている。
+                    <br />
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* 経歴 */}
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-8 rounded-xl shadow-sm border border-indigo-100">
-                <div className="text-center mb-8">
+            {/* Season Records */}
+            <div
+              ref={statsRef as React.RefObject<HTMLDivElement>}
+              className={`scroll-animate ${
+                statsVisible
+                  ? "scroll-visible scroll-stagger-3"
+                  : "scroll-hidden from-down"
+              }`}
+            >
+              <div className="card-background py-8 rounded-xl border-2 border-blue-400/50">
+                <div className="text-center mb-8 px-8">
                   <div className="relative inline-block">
-                    <Image
-                      src="/icons/calendar.svg"
-                      alt="Career icon"
-                      width={42}
-                      height={42}
-                      className="absolute left-[-65px] top-1/2 transform -translate-y-1/2"
-                    />
-                    <h4 className="text-3xl font-bold text-gray-800">Career</h4>
+                    <span className="text-4xl mr-4">📊</span>
+                    <h4
+                      className="text-3xl font-bold text-white inline"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
+                      SEASON RECORDS
+                    </h4>
                   </div>
                 </div>
-                <div className="relative">
-                  {/* Timeline line - hidden on mobile */}
-                  <div className="absolute left-36 top-0 h-full w-0.5 bg-gradient-to-b from-indigo-300 to-blue-200 hidden md:block"></div>
 
-                  {/* Timeline items */}
-                  <div className="space-y-8">
-                    {/* 学部 */}
-                    <div className="relative flex flex-col md:flex-row md:items-start group">
-                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
-                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
-                          2021年4月
-                        </div>
-                      </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
-                      <div className="flex-1 md:ml-8">
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
-                          <h5 className="font-semibold text-gray-800 text-lg">
-                            <span className="hidden md:inline">
-                              京都大学 工学部 情報学科 入学
-                            </span>
-                            <span className="md:hidden">
-                              京都大学工学部情報学科 入学
-                            </span>
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 研究室配属 */}
-                    <div className="relative flex flex-col md:flex-row md:items-start group">
-                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
-                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
-                          2024年4月
-                        </div>
-                      </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
-                      <div className="flex-1 md:ml-8">
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
-                          <h5 className="font-semibold text-gray-800 text-lg">
-                            <span className="md:hidden">HRI</span>
-                            <span className="hidden md:inline">
-                              ヒューマンロボットインタラクション
-                            </span>
-                            研究室 配属
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* STAR UP */}
-                    <div className="relative flex flex-col md:flex-row md:items-start group">
-                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
-                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
-                          2025年2月
-                        </div>
-                      </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
-                      <div className="flex-1 md:ml-8">
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
-                          <h5 className="font-semibold text-gray-800 text-lg">
-                            株式会社STAR UP 入社
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 大学院 */}
-                    <div className="relative flex flex-col md:flex-row md:items-start group">
-                      <div className="w-full md:w-36 text-center md:text-right md:pr-8 flex-shrink-0 mb-2 md:mb-0">
-                        <div className="text-lg font-bold text-indigo-600 whitespace-nowrap group-hover:text-indigo-700 transition-colors">
-                          2025年4月
-                        </div>
-                      </div>
-                      <div className="absolute left-36 transform -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-sm mt-1 group-hover:scale-110 transition-transform hidden md:block"></div>
-                      <div className="flex-1 md:ml-8">
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-indigo-50 hover:shadow-md transition-shadow">
-                          <h5 className="font-semibold text-gray-800 text-lg">
-                            京都大学大学院 情報学研究科 社会情報学専攻 入学
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {/* Season Stats Table */}
+                <div className="overflow-x-auto">
+                  <table className="w-full text-white table-fixed border border-blue-400/30">
+                    <thead>
+                      <tr className="border-b-2 border-blue-400/50">
+                        <th className="text-center py-3 px-2 text-blue-300 w-16 border-l border-r border-blue-400/30">
+                          年度
+                        </th>
+                        <th className="text-center py-3 px-2 text-blue-300 w-56 min-w-[14rem] border-r border-blue-400/30">
+                          所属
+                        </th>
+                        <th className="text-center py-3 px-2 text-blue-300">
+                          主な活動
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-blue-400/30 hover:bg-white/10 transition-colors">
+                        <td className="py-3 px-2 font-semibold border-l border-r border-blue-400/30">
+                          2021
+                        </td>
+                        <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
+                          京都大学 工学部 情報学科
+                        </td>
+                        <td className="py-3 px-2 text-sm break-words">
+                          授業「プログラミング入門」にて人生で初めてプログラミングに触れる
+                        </td>
+                      </tr>
+                      <tr className="border-b border-blue-400/30 hover:bg-white/10 transition-colors">
+                        <td className="py-3 px-2 font-semibold border-l border-r border-blue-400/30">
+                          2022
+                        </td>
+                        <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
+                          京都大学 工学部 情報学科
+                        </td>
+                        <td className="py-3 px-2 text-sm break-words">
+                          授業の一環で、2人チームでコンピュータ SIMPLE
+                          (SIxteen-bit MicroProcessor for Laboratory Experiment)
+                          を設計した。gitの便利さを学んだ。
+                        </td>
+                      </tr>
+                      <tr className="border-b border-blue-400/30 hover:bg-white/10 transition-colors">
+                        <td className="py-3 px-2 font-semibold border-l border-r border-blue-400/30">
+                          2023
+                        </td>
+                        <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
+                          京都大学 工学部 情報学科
+                        </td>
+                        <td className="py-3 px-2 text-sm break-words">
+                          授業の一環で、HTML, CSS,
+                          JavaScriptを用いて麻雀成績管理Webアプリを作成した。
+                          <br />
+                          幼い頃から目にしてきたWebページを自分で作れるようになったのがすごく楽しかった。
+                        </td>
+                      </tr>
+                      <tr className="border-b border-blue-400/30 hover:bg-white/10 transition-colors">
+                        <td className="py-3 px-2 font-semibold border-l border-r border-blue-400/30">
+                          2024
+                        </td>
+                        <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
+                          京都大学 工学部 情報学科
+                          <br />
+                          HRI研究室
+                        </td>
+                        <td className="py-3 px-2 text-sm break-words">
+                          情報技術を人間に対してどう活用するかに興味があったため、人とロボットとの関わり合い方について研究を行うヒューマンロボットインタラクション(HRI)研究室への配属を希望した。
+                          <br />
+                        </td>
+                      </tr>
+                      <tr className="border-b border-blue-400/30 hover:bg-white/10 transition-colors">
+                        <td className="py-3 px-2 font-semibold border-l border-r border-blue-400/30">
+                          2025
+                        </td>
+                        <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
+                          京都大学 情報学研究科
+                          <br />
+                          HRI研究室
+                          <br />
+                          株式会社STAR UP
+                        </td>
+                        <td className="py-3 px-2 text-sm break-words">
+                          学部で学んだ情報技術が実務でどう活かされるのか知りたいと思い、2025年2月に株式会社STAR
+                          UPに入社。
+                          <br />
+                          大学院の授業・研究、STAR UPでの実務に勤しむ。
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

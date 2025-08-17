@@ -1,39 +1,90 @@
 import Image from "next/image";
 import { scrollToSection } from "@/utils/scroll";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Hero = () => {
-  return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-black text-white relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-3xl"></div>
-      </div>
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+  const { elementRef: buttonsRef, isVisible: buttonsVisible } =
+    useScrollAnimation({
+      threshold: 0.1,
+      triggerOnce: false,
+    });
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+  return (
+    <section className="h-[calc(100vh-64px)] flex items-center justify-center text-white relative overflow-hidden soccer-pitch-alt">
+      {/* Enhanced Decorative Elements */}
+      <div className="absolute inset-0">
+        {/* Floating Soccer Balls */}
+        <div className="absolute top-20 left-20">
+          <span className="soccer-ball-float text-4xl opacity-30">⚽</span>
+        </div>
+        <div className="absolute top-40 right-32">
+          <span
+            className="soccer-ball-bounce text-3xl opacity-25"
+            style={{ "--delay": "0.5s" } as React.CSSProperties}
+          >
+            ⚽
+          </span>
+        </div>
+        <div className="absolute bottom-32 left-40">
+          <span className="rotate-scale text-5xl opacity-20">⚽</span>
+        </div>
+        <div className="absolute bottom-20 right-20">
+          <span
+            className="pulse-animation text-4xl opacity-30"
+            style={{ "--delay": "1s" } as React.CSSProperties}
+          >
+            ⚽
+          </span>
+        </div>
+      </div>
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tight">
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-2xl">
-                Genki Kimura
-              </span>
+          {/* Hero Title with Gamba Style */}
+          <div
+            ref={titleRef as React.RefObject<HTMLDivElement>}
+            className={`mb-8 scroll-animate-scale ${
+              titleVisible ? "scroll-visible" : "scroll-hidden from-scale"
+            }`}
+          >
+            <h1
+              className="text-4xl md:text-6xl font-bold tracking-wider text-white mb-2"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              GENKI KIMURA
             </h1>
-            <div className="text-3xl md:text-5xl font-bold tracking-wider">
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-2xl">
-                Portfolio
-              </span>
-            </div>
+            <h2
+              className="text-2xl md:text-4xl text-blue-200 font-medium"
+              style={{ fontFamily: "Noto Sans JP, sans-serif" }}
+            >
+              Portfolio
+            </h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          {/* CTA Buttons with Soccer Theme */}
+          <div
+            ref={buttonsRef as React.RefObject<HTMLDivElement>}
+            className={`flex flex-col sm:flex-row gap-6 justify-center scroll-animate ${
+              buttonsVisible
+                ? "scroll-visible scroll-stagger-1"
+                : "scroll-hidden from-down"
+            }`}
+          >
             <button
               onClick={() => scrollToSection("profile")}
-              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+              className="group px-8 py-4 text-white rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover-gamba"
+              style={{
+                background: "linear-gradient(135deg, #0066cc 0%, #002d72 100%)",
+                fontFamily: "Inter, sans-serif",
+                animation: "kickoffFade 2s ease-out 1s both",
+              }}
             >
               <span className="flex items-center justify-center gap-2">
-                About Me
+                About Me <span className="soccer-ball"></span>
                 <Image
                   src="/icons/arrow-right.svg"
                   alt="Arrow right"
@@ -45,10 +96,14 @@ const Hero = () => {
             </button>
             <button
               onClick={() => scrollToSection("works")}
-              className="group px-8 py-4 border-2 border-blue-400 text-blue-400 rounded-xl font-semibold hover:bg-blue-400 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-400/25"
+              className="group px-8 py-4 border-2 border-blue-300 text-blue-300 rounded-xl font-bold hover:bg-blue-300 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-lg"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                animation: "kickoffFade 2s ease-out 1.2s both",
+              }}
             >
               <span className="flex items-center justify-center gap-2">
-                View Works
+                VIEW WORKS
                 <Image
                   src="/icons/arrow-right.svg"
                   alt="Arrow right"
@@ -66,10 +121,14 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-gray-400 uppercase tracking-wider">
-            Scroll
+          <span
+            className="text-xs text-blue-200 uppercase tracking-wider font-semibold"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            SCROLL
           </span>
           <Image
             src="/icons/arrow-down.svg"
@@ -84,7 +143,8 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+      {/* Bottom Border Line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
     </section>
   );
 };

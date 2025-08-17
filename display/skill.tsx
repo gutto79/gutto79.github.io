@@ -1,67 +1,95 @@
 import Image from "next/image";
-import { Star } from "lucide-react";
-import BackgroundDecorations from "@/components/BackgroundDecorations";
-import { renderStars } from "@/utils/skills";
 import { skillCategories } from "@/data/skills";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const Skills = () => {
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+  const { elementRef: explanationRef, isVisible: explanationVisible } =
+    useScrollAnimation({
+      threshold: 0.1,
+      triggerOnce: false,
+    });
+  const { elementRef: skillsGridRef, isVisible: skillsGridVisible } =
+    useScrollAnimation({
+      threshold: 0.1,
+      triggerOnce: false,
+    });
+
   return (
     <section
       id="skills"
-      className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50 relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-20 relative overflow-hidden text-white soccer-pitch-alt"
     >
-      <BackgroundDecorations />
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          {/* Section Title */}
+          <div
+            ref={titleRef as React.RefObject<HTMLDivElement>}
+            className={`text-center mb-8 sm:mb-12 md:mb-16 scroll-animate ${
+              titleVisible ? "scroll-visible" : "scroll-hidden from-down"
+            }`}
+          >
             <div className="relative inline-block mb-4">
-              <Image
-                src="/icons/skills.svg"
-                alt="Skills icon"
-                width={48}
-                height={48}
-                className="absolute left-[-70px] top-1/2 transform -translate-y-1/2"
-              />
-              <h2 className="text-3xl sm:text-4xl border-b-4 border-blue-600 pb-2 font-bold text-gray-800 inline-block relative">
-                Skills
-                <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></div>
+              <span className="text-5xl mr-4">⭐️</span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-white inline-block relative"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                SKILLS
               </h2>
             </div>
+            <div
+              className="w-[140px] h-1 mx-auto"
+              style={{ background: "linear-gradient(90deg, #0066cc, #002d72)" }}
+            ></div>
           </div>
 
-          <div className="mb-8 sm:mb-12 p-4 sm:p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-blue-100/50">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-6 text-center relative">
+          {/* Skill Level Explanation */}
+          <div
+            ref={explanationRef as React.RefObject<HTMLDivElement>}
+            className={`mb-8 sm:mb-12 p-4 sm:p-6 md:p-8 card-background rounded-xl sm:rounded-2xl scroll-animate ${
+              explanationVisible
+                ? "scroll-visible scroll-stagger-1"
+                : "scroll-hidden from-down"
+            }`}
+          >
+            <h3
+              className="text-base sm:text-lg font-semibold text-white mb-4 sm:mb-6 text-center relative"
+              style={{ fontFamily: "Noto Sans JP, sans-serif" }}
+            >
               スキルレベルの説明
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-gray-600">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-blue-100">
               <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
                   <div className="flex gap-0.5 mt-1 shrink-0">
                     {[...Array(4)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
+                      <span key={i} className="text-yellow-400 text-sm">
+                        ⚽
+                      </span>
                     ))}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800">(リードレベル)</p>
+                    <p className="font-medium text-white">(リードレベル)</p>
                     <p className="text-sm">
                       複雑な問題解決やシステム設計を主導し、メンバーの指導もできる。
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
                   <div className="flex gap-0.5 mt-1">
                     {[...Array(3)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
+                      <span key={i} className="text-yellow-400 text-sm">
+                        ⚽
+                      </span>
                     ))}
-                    <Star className="w-4 h-4 text-gray-300" />
+                    <span className="text-gray-500 text-sm">⚽</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800">(実務レベル)</p>
+                    <p className="font-medium text-white">(実務レベル)</p>
                     <p className="text-sm">
                       チームの一員として自律的に担当業務の開発を進めることができる。研究や長期インターン等で継続的に用いている。
                     </p>
@@ -69,36 +97,37 @@ const Skills = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
                   <div className="flex gap-0.5 mt-1">
                     {[...Array(2)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
+                      <span key={i} className="text-yellow-400 text-sm">
+                        ⚽
+                      </span>
                     ))}
                     {[...Array(2)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-gray-300" />
+                      <span key={i} className="text-gray-500 text-sm">
+                        ⚽
+                      </span>
                     ))}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800">
-                      (基礎開発レベル)
-                    </p>
+                    <p className="font-medium text-white">(基礎開発レベル)</p>
                     <p className="text-sm">
                       自力で調べながら、小規模で単純なアプリケーションや機能を作成できる。開発で用いたことがある。
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-blue-50/50 transition-colors duration-300">
+                <div className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
                   <div className="flex gap-0.5 mt-1">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <span className="text-yellow-400 text-sm">⚽</span>
                     {[...Array(3)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-gray-300" />
+                      <span key={i} className="text-gray-500 text-sm">
+                        ⚽
+                      </span>
                     ))}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800">(入門レベル)</p>
+                    <p className="font-medium text-white">(入門レベル)</p>
                     <p className="text-sm">
                       学部や院の授業で触れ、基本的な操作ができる。
                     </p>
@@ -108,50 +137,80 @@ const Skills = () => {
             </div>
           </div>
 
-          <div className="space-y-8 sm:space-y-12">
+          {/* Skills Grid - Parallel Category Cards */}
+          <div 
+            ref={skillsGridRef as React.RefObject<HTMLDivElement>}
+            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 scroll-animate ${
+              skillsGridVisible ? "scroll-visible" : "scroll-hidden from-down"
+            }`}
+          >
             {skillCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex}>
-                <div className="text-center mb-6 sm:mb-8">
-                  <h3
-                    className={`text-xl sm:text-2xl font-bold text-gray-800 mb-4 inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r ${category.bgColor} border-2 border-white/50 shadow-lg`}
-                  >
-                    {category.name}
-                  </h3>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div
-                      key={skillIndex}
-                      className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md border border-blue-100/50"
-                    >
-                      <div className="text-center">
-                        {/* アイコン */}
-                        <div className="flex justify-center mb-3 sm:mb-4">
-                          <div
-                            className={`w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br ${category.bgColor} flex items-center justify-center shadow-sm border border-white/50`}
-                          >
-                            <Image
-                              src={skill.iconPath}
-                              alt={skill.name}
-                              width={32}
-                              height={32}
-                              className="w-6 h-6 sm:w-8 sm:h-8"
-                            />
-                          </div>
-                        </div>
-
-                        <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2 sm:mb-3 leading-tight">
-                          {skill.name}
-                        </h4>
-
-                        <div className="mb-2">
-                          {renderStars(skill.level, skill.name)}
-                        </div>
+              <div
+                key={categoryIndex}
+                className="card-background rounded-xl p-6 h-fit"
+              >
+                      {/* Category Header */}
+                      <div className="flex items-center gap-3 mb-6">
+                        <span className="text-2xl">⚽</span>
+                        <h3
+                          className="text-lg sm:text-xl font-bold text-white"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {category.name}
+                        </h3>
                       </div>
-                    </div>
-                  ))}
-                </div>
+
+                      {/* Skills as vertical compact cards */}
+                      <div className="space-y-3">
+                        {category.skills.map((skill, skillIndex) => (
+                          <div
+                            key={skillIndex}
+                            className="flex items-center gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group border border-blue-400/20"
+                          >
+                            {/* Icon */}
+                            <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform bg-white rounded">
+                              <Image
+                                src={skill.iconPath}
+                                alt={skill.name}
+                                width={20}
+                                height={20}
+                                className="w-5 h-5"
+                              />
+                            </div>
+
+                            {/* Skill Info */}
+                            <div className="flex-1 min-w-0">
+                              <h4
+                                className="text-sm font-semibold text-white truncate"
+                                style={{ fontFamily: "Inter, sans-serif" }}
+                              >
+                                {skill.name}
+                              </h4>
+                              {/* TOEIC Score or Soccer Ball Rating */}
+                              {skill.name === "TOEIC" ? (
+                                <div className="text-sm font-bold text-yellow-400 mt-1">
+                                  Score: {skill.level}
+                                </div>
+                              ) : (
+                                <div className="flex gap-0.5 mt-1">
+                                  {[...Array(4)].map((_, i) => (
+                                    <span
+                                      key={i}
+                                      className={`text-xs ${
+                                        i < skill.level
+                                          ? "text-yellow-400"
+                                          : "text-gray-600"
+                                      }`}
+                                    >
+                                      ⚽
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
               </div>
             ))}
           </div>
