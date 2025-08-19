@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 1,
     title: "ポートフォリオサイト",
     description:
-      "Next.jsとTypeScriptで構築したポートフォリオサイト。サッカーをモチーフにデザイン。",
+      "Next.jsとTypeScriptで構築したポートフォリオサイト。愛してやまないプロサッカーチーム「ガンバ大阪」をモチーフにデザイン。",
     features: undefined,
     role: undefined,
     considerations: [
@@ -29,7 +29,7 @@ export const projects: Project[] = [
         某大手エンタメ企業や某大手通信キャリアに向け、商品の売上データや各店舗のイベント情報など分析して需要予測を行い、最適な発注量の提案を行うアプリケーションを開発。
         主にフロントエンドエンジニアとしてUI/UX実装を担当。
         <br />
-        追加開発フェーズでは、一部機能について要件定義を元に詳細設計、DB修正、新規API実装、UI/UX実装まで一気通貫で担当。
+        追加開発フェーズでは、一部機能について要件定義を元に「詳細設計→DB修正→新規API実装→UI/UX実装」まで一気通貫で担当。
       </>
     ),
     features: [
@@ -216,6 +216,44 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/gutto79/practice_of_information_systems_pr1_group03",
     period: "2025年4月 - 6月",
+    teamSize: "5人",
+    tags: ["hackathon"],
+  },
+  {
+    id: 7,
+    title: "政党マッチングアプリ",
+    description: (
+      <>
+        学内ハッカソンにて開発した政党マッチングアプリ。
+        既存の政党マッチングアプリと異なり、個々の有権者が十分な情報に基づいて論理的な意思決定を行えるよう、政策方針の因果関係を視覚化した論理構造グラフを表示する。
+        さらに、「簡易グラフ→詳細グラフ→詳細説明→関連資料へのリンク」と段階的に情報量を提供することで、有権者が自分のペースで政策方針を深掘りができる。
+        <br />
+        フロントエンド全般を担当し、React-flowとdagre.jsを用いて論理グラフの動的表示を実装。
+        結果として10チーム中1位を獲得。
+      </>
+    ),
+    features: [
+      "有権者の価値観に沿った政党マッチング機能",
+      "政策方針の因果関係を視覚化した論理構造グラフの自動生成、表示",
+    ],
+    role: [
+      "フロントエンド全般の実装",
+      "論理グラフ表示に関する要件定義と詳細設計",
+      "React-flowとdagre.jsを用いた論理グラフのUI/UX実装",
+    ],
+    technologies: ["Next.js", "TypeScript"],
+    images: [
+      "/images/works/smash_voters/result.webp",
+      "/videos/works/smash_voters/demo.webm",
+      "/images/works/smash_voters/select.webp",
+      "/images/works/smash_voters/easygraph.webp",
+      "/images/works/smash_voters/graph.webp",
+      "/images/works/smash_voters/detail.webp",
+      "/images/works/smash_voters/detail2.webp",
+      "/images/works/smash_voters/tech.webp",
+    ],
+    githubUrl: null,
+    period: "2025年6月 - 7月",
     teamSize: "5人",
     tags: ["hackathon"],
   },
