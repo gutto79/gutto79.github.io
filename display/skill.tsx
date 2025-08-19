@@ -179,7 +179,7 @@ const Skills = () => {
                             </div>
 
                             {/* Skill Info */}
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
                               <h4
                                 className="text-sm font-semibold text-white truncate"
                                 style={{ fontFamily: "Inter, sans-serif" }}
@@ -188,11 +188,11 @@ const Skills = () => {
                               </h4>
                               {/* TOEIC Score or Soccer Ball Rating */}
                               {skill.name === "TOEIC" ? (
-                                <div className="text-sm font-bold text-yellow-400 mt-1">
-                                  Score: {skill.level}
+                                <div className="text-sm font-bold text-yellow-400 ml-2">
+                                  {skill.level}
                                 </div>
                               ) : (
-                                <div className="flex gap-0.5 mt-1">
+                                <div className="flex gap-0.5 ml-2">
                                   {[...Array(4)].map((_, i) => (
                                     <span
                                       key={i}

@@ -157,9 +157,17 @@ const Profile = () => {
                   >
                     大学院ではヒューマンロボットインタラクション研究室に所属し、
                     教育ロボットが授業内容に基づいたSNS投稿を生成・発信することで学生の学習効果を高める「ロボットによる授業関連SNS投稿生成システム」の研究に取り組んでいる。
+                    <Link
+                      href="https://x.com/RobovieHRI"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-100 hover:text-white underline decoration-1 hover:decoration-2 transition-all"
+                    >
+                      ロボットのXアカウント
+                    </Link>
                     <br />
                     株式会社STAR
-                    UPでは、主にフロントエンドエンジニアとして、需要予測を組み込んだ発注業務支援アプリの開発に携わっている。
+                    UPでは、主にフロントエンドエンジニアとして、AIによる需要予測を組み込んだ発注業務支援アプリの開発に携わっている。
                     <br />
                   </p>
                 </div>
@@ -262,7 +270,7 @@ const Profile = () => {
                           2025
                         </td>
                         <td className="py-3 px-2 whitespace-nowrap border-r border-blue-400/30">
-                          京都大学 情報学研究科
+                          京都大学大学院 情報学研究科
                           <br />
                           HRI研究室
                           <br />

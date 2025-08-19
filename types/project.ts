@@ -8,7 +8,7 @@ export type ProjectTag =
 export interface Project {
   id: number;
   title: string;
-  description: string;
+  description: React.ReactNode;
   features?: string[];
   role?: string[];
   considerations?: string[];
@@ -18,6 +18,7 @@ export interface Project {
   images: string[];
   githubUrl: string | null;
   period: string;
+  teamSize: string;
   tags: ProjectTag[];
 }
 

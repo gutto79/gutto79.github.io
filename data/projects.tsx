@@ -4,7 +4,8 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "ポートフォリオサイト",
-    description: "Next.jsとTypeScriptで構築したポートフォリオサイト。",
+    description:
+      "Next.jsとTypeScriptで構築したポートフォリオサイト。サッカーをモチーフにデザイン。",
     features: undefined,
     role: undefined,
     considerations: [
@@ -15,20 +16,28 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript"],
     images: ["/images/works/portfolio/portfolio_hero.webp"],
     githubUrl: "https://github.com/gutto79/gutto79.github.io",
-    period: "2024年5月26日-27日",
+    period: "2025年5月26日-27日",
+    teamSize: "1人",
     tags: ["personal"],
   },
   {
     id: 2,
     title: "発注業務支援アプリ",
-    description:
-      "株式会社STAR UPでの長期インターンプロジェクト。某大手エンタメ企業や某大手通信キャリアに向け、商品の売上データを分析して需要予測を行い、最適な発注量の提案を行うアプリケーションを開発。フロントエンドエンジニアとしてUI/UX実装を担当。",
+    description: (
+      <>
+        株式会社STAR UPでの長期インターンプロジェクト。
+        某大手エンタメ企業や某大手通信キャリアに向け、商品の売上データや各店舗のイベント情報など分析して需要予測を行い、最適な発注量の提案を行うアプリケーションを開発。
+        主にフロントエンドエンジニアとしてUI/UX実装を担当。
+        <br />
+        追加開発フェーズでは、一部機能について要件定義を元に詳細設計、DB修正、新規API実装、UI/UX実装まで一気通貫で担当。
+      </>
+    ),
     features: [
       "在庫商品の管理",
       "売上予測の可視化",
       "需要予測を組み込んだ発注量提案",
     ],
-    role: ["UI/UX実装", "UI/UX改善の提案", "単体・結合テスト"],
+    role: ["UI/UX実装", "Jestを用いた単体テスト", "API実装"],
     considerations: [
       "質を担保しつつ提示された期限よりも早くタスクを終わらせること",
       "与えられたタスクをこなすだけではなく、UI/UX設計、API設計に改善点があれば積極的に改善の提案を行うこと",
@@ -41,7 +50,7 @@ export const projects: Project[] = [
       "Next.jsとTypeScriptを用いたフロントエンド開発スキル",
       "設計書から要件を理解し、開発、テストを行う下流工程を実務を通じて理解できた",
     ],
-    technologies: ["Next.js", "TypeScript"],
+    technologies: ["Next.js", "TypeScript", "FastAPI", "Python", "Docker"],
     images: [
       "/images/works/intern_works/new-item-modal.webp",
       "/images/works/intern_works/order-application.webp",
@@ -49,6 +58,7 @@ export const projects: Project[] = [
     ],
     githubUrl: null,
     period: "2025年2月 - 現在",
+    teamSize: "9人(フロントエンドは3人)",
     tags: ["long-term-internship"],
   },
   {
@@ -78,7 +88,7 @@ export const projects: Project[] = [
       "生成AIとアプリの連携方法",
       "BaaS(Supabase)を用いたアプリ開発手法",
     ],
-    technologies: ["React", "Vite", "TypeScript", "Supabase"],
+    technologies: ["React", "TypeScript", "Supabase"],
     images: [
       "/images/works/compatibility_app/group_compatibility.webp",
       "/images/works/compatibility_app/login.webp",
@@ -87,13 +97,25 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/shota-i-03/team_a",
     period: "2025年3月末の1週間",
+    teamSize: "3人",
     tags: ["hackathon"],
   },
   {
     id: 4,
     title: "授業関連SNS投稿生成システム",
-    description:
-      "学部4回から継続して行なっている研究プロジェクト。教育ロボットが授業内容を音声認識し、GPT-4oを活用して学習効果を高めるSNS投稿を自動生成するシステムの構築、検証を行う。",
+    description: (
+      <>
+        学部4回から継続して行なっている研究プロジェクト。教育ロボットが授業内容を音声認識し、GPT-4oを活用して学習効果を高めるSNS投稿を自動生成するシステムの構築、検証を行う。
+        <a
+          href="https://x.com/RobovieHRI"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-300 hover:text-white underline ml-1"
+        >
+          ロボットのXアカウント
+        </a>
+      </>
+    ),
     features: [
       "先生の授業内容を音声認識し、文字起こしデータに変換",
       "GPT-4oによる学習効果を高める投稿の生成",
@@ -129,6 +151,7 @@ export const projects: Project[] = [
     ],
     githubUrl: null,
     period: "2024年4月 - 現在",
+    teamSize: "自分、教授、助教",
     tags: ["research"],
   },
   {
@@ -151,13 +174,21 @@ export const projects: Project[] = [
     images: ["/images/works/rizap/rizap.webp"],
     githubUrl: null,
     period: "2025年5月上旬の3日間",
+    teamSize: "3人",
     tags: ["short-term-internship"],
   },
   {
     id: 6,
     title: "パートナー幸福度可視化アプリ",
-    description:
-      "学内ハッカソンにて開発したアプリ。各ユーザーがパートナーに「されて嬉しい行動」や「されて嫌な行動」を幸福度の変動値と共に入力することで、パートナーはユーザーの幸福度をリアルタイムで確認することができる。また、お互いの過去の行動をスライドショーで振り返る機能を搭載し、幸福度の変遷を再認識する機会を設けている。カップルがこのアプリを用いることで、価値観の相互理解を深めることを目的としている。5人チームのリーダーとして開発を主導し、結果として10チーム中3位に入賞した。",
+    description: (
+      <>
+        学内ハッカソンにて開発したアプリ。
+        各ユーザーがパートナーに「されて嬉しい行動」や「されて嫌な行動」を幸福度の変動値と共に入力することで、パートナーはユーザーの幸福度をリアルタイムで確認することができる。
+        また、お互いの過去の行動をスライドショーで振り返る機能を搭載し、幸福度の変遷を再認識する機会を設けている。
+        カップルがこのアプリを用いることで、価値観の相互理解を深めることを目的としている。
+        5人チームのリーダーとして開発を主導し、結果として10チーム中3位に入賞した。
+      </>
+    ),
     features: [
       "リアルタイムでのパートナーの幸福度可視化",
       "過去の行動のスライドショー表示",
@@ -176,7 +207,7 @@ export const projects: Project[] = [
       "日本語が通じないメンバーがいる中での開発",
     ],
     learnings: ["notionを用いた徹底的なタスク管理、タスク振り"],
-    technologies: ["Next.js", "TypeScript", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "FastAPI", "Python", "Supabase"],
     images: [
       "/images/works/happiness_app/home.webp",
       "/videos/works/happiness_app/slide_show.webm",
@@ -185,6 +216,7 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/gutto79/practice_of_information_systems_pr1_group03",
     period: "2025年4月 - 6月",
+    teamSize: "5人",
     tags: ["hackathon"],
   },
 ];

@@ -30,7 +30,7 @@ export const PopUp = ({ isOpen, onClose, children }: PopUpProps) => {
         aria-hidden={!isOpen}
       />
       <div
-        className={`fixed left-1/2 top-1/2 flex h-[90%] max-h-[95vh] w-[95%] md:h-[80%] md:w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
+        className={`fixed left-1/2 top-1/2 flex h-[92%] max-h-[95vh] w-[95%] md:h-[90%] md:w-[80%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-10 rounded-lg shadow-xl transition-all duration-300 ${
           isOpen
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"
